@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import { motion } from 'framer-motion'
@@ -9,6 +9,7 @@ import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import { OffersSection } from '../components/OffersSection'
 import { FeaturedAttractions } from '../components/sections/FeaturedAttractions'
+import { AIItinerarySection } from '../components/sections/AIItinerarySection'
 
 const experiences = [
   {
@@ -135,14 +136,7 @@ const ExperienceCard = ({ exp }: { exp: (typeof experiences)[0] }) => {
 }
 
 export default function PhuQuocPage() {
-  const [aiQuery, setAiQuery] = useState('')
   const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start', dragFree: true })
-
-  const quickPrompts = [
-    '🌴 Lịch trình 3N2Đ cho gia đình',
-    '❤️ Kỳ nghỉ trăng mật lãng mạn',
-    '🎒 Phượt tự túc 4 ngày',
-  ]
 
   return (
     <div className="bg-section-bg text-slate-800 w-full min-h-screen flex flex-col font-sans">
@@ -207,59 +201,7 @@ export default function PhuQuocPage() {
         </div>
       </header>
 
-      {/* ── AI PROMPT BAR ── */}
-      <section className="bg-navy border-b border-white/10 w-full relative z-20">
-        <div className="max-w-[1600px] mx-auto px-8 py-10 flex flex-col lg:flex-row items-center gap-10">
-          <div className="lg:w-1/3 flex items-start gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-accent-orange flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-orange-500/30">
-              <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-              </svg>
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-2">Hỏi AI để lên lịch trình</h2>
-              <p className="text-sm text-gray-400">
-                Thiết kế chuyến đi cá nhân hóa trong vài giây.
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:w-2/3 w-full space-y-4">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-accent-orange to-orange-400 rounded-full blur opacity-25 group-hover:opacity-40 transition-opacity duration-300" />
-              <input
-                type="text"
-                value={aiQuery}
-                onChange={(e) => setAiQuery(e.target.value)}
-                placeholder="Ví dụ: Gợi ý lịch trình 3 ngày 2 đêm cho gia đình có trẻ nhỏ..."
-                className="relative w-full bg-navy-mid text-white placeholder-gray-400 border border-white/10 rounded-full py-4 pl-6 pr-16 focus:outline-none focus:border-accent-orange focus:ring-1 focus:ring-accent-orange text-base transition-all"
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 bg-accent-orange hover:bg-orange-600 rounded-full flex items-center justify-center text-white transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
-              {quickPrompts.map((p) => (
-                <button
-                  key={p}
-                  onClick={() => setAiQuery(p.replace(/^[^\s]+ /, ''))}
-                  className="whitespace-nowrap bg-white/5 hover:bg-white/10 border border-white/10 rounded-full px-5 py-2 text-sm text-gray-300 hover:text-white transition-colors"
-                >
-                  {p}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <AIItinerarySection />
 
       {/* ── MAIN CONTENT ── */}
       <main className="w-full flex-1 py-16 px-8 max-w-[1600px] mx-auto space-y-24">
