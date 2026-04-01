@@ -133,11 +133,6 @@ export default function NewsroomPage() {
                 alt="Featured"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000"
               />
-              <div className="absolute top-8 left-8">
-                <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                  Nổi bật
-                </span>
-              </div>
             </div>
             <div className="lg:w-2/5 p-12 flex flex-col justify-center">
               <div className="flex items-center gap-3 text-sm text-gray-500 mb-6 font-semibold uppercase tracking-wider">
