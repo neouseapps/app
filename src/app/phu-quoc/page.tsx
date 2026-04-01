@@ -124,7 +124,6 @@ const ExperienceCard = ({ exp }: { exp: (typeof experiences)[0] }) => {
             <span className={`text-xs font-semibold px-2 py-1 rounded-full ${exp.categoryColor}`}>
               {exp.category}
             </span>
-            <span className="text-xs text-[var(--color-text-dim)]">{exp.duration}</span>
           </div>
         </div>
         <p className="text-xs text-[var(--color-text-dim)] line-clamp-2">{exp.description}</p>
