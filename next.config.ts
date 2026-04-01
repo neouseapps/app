@@ -12,6 +12,14 @@ import type { Configuration } from 'webpack'
  */
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
   webpack(config: Configuration) {
     // SVGR: import .svg files as React components
     config.module?.rules?.push({

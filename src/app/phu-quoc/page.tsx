@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
+import useEmblaCarousel from 'embla-carousel-react'
 import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import { OffersSection } from '../components/OffersSection'
@@ -98,65 +100,34 @@ const experiences = [
   },
 ]
 
-const HeartIcon = ({ filled }: { filled: boolean }) => (
-  <svg className="w-4 h-4" fill={filled ? '#ef4444' : 'currentColor'} viewBox="0 0 20 20">
-    <path
-      fillRule="evenodd"
-      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-      clipRule="evenodd"
-    />
-  </svg>
-)
-
 const ExperienceCard = ({ exp }: { exp: (typeof experiences)[0] }) => {
-  const [fav, setFav] = useState(false)
   return (
-    <div className="bg-white rounded-card overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group cursor-pointer">
-      <div className="h-48 overflow-hidden relative">
-        <img
+    <div className="bg-white rounded-card overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group cursor-pointer flex flex-col h-96">
+      {/* Image — 2/3 of card height */}
+      <div className="[flex:2] relative overflow-hidden min-h-0">
+        <Image
           src={exp.image}
-          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
           alt={exp.title}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
+          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
         />
-        {exp.badge && (
-          <div
-            className={`absolute top-4 left-4 ${exp.badgeColor} text-white px-3 py-1 rounded-full text-xs font-bold`}
-          >
-            {exp.badge}
-          </div>
-        )}
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            setFav(!fav)
-          }}
-          className={`absolute top-4 right-4 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors ${fav ? 'text-red-500' : 'text-gray-400 hover:text-red-500'}`}
-        >
-          <HeartIcon filled={fav} />
-        </button>
       </div>
-      <div className="p-5">
-        <div className="flex items-center gap-2 mb-2">
-          <span className={`text-xs font-semibold px-2 py-1 rounded-full ${exp.categoryColor}`}>
-            {exp.category}
-          </span>
-          <span className="text-xs text-gray-500">{exp.duration}</span>
-        </div>
-        <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-accent-orange transition-colors">
-          {exp.title}
-        </h3>
-        <p className="text-sm text-gray-500 mb-4 line-clamp-2">{exp.description}</p>
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-          <div>
-            <span className="text-2xl font-bold text-navy">{exp.price}</span>
-            {exp.originalPrice && (
-              <span className="text-sm text-gray-400 line-through ml-2">{exp.originalPrice}</span>
-            )}
+
+      {/* Content — 1/3 of card height */}
+      <div className="[flex:1] min-h-0 p-4 flex flex-col justify-between">
+        <div>
+          <h3 className="text-base font-bold text-[var(--color-text-default)] mb-2 group-hover:text-accent-orange transition-colors line-clamp-2">
+            {exp.title}
+          </h3>
+          <div className="flex items-center gap-2">
+            <span className={`text-xs font-semibold px-2 py-1 rounded-full ${exp.categoryColor}`}>
+              {exp.category}
+            </span>
+            <span className="text-xs text-[var(--color-text-dim)]">{exp.duration}</span>
           </div>
-          <button className="bg-navy text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent-orange transition-colors">
-            Đặt ngay
-          </button>
         </div>
+        <p className="text-xs text-[var(--color-text-dim)] line-clamp-2">{exp.description}</p>
       </div>
     </div>
   )
@@ -164,6 +135,7 @@ const ExperienceCard = ({ exp }: { exp: (typeof experiences)[0] }) => {
 
 export default function PhuQuocPage() {
   const [aiQuery, setAiQuery] = useState('')
+  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start', dragFree: true })
 
   const quickPrompts = [
     '🌴 Lịch trình 3N2Đ cho gia đình',
@@ -326,7 +298,19 @@ export default function PhuQuocPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Mobile carousel (< 640px) */}
+          <div className="sm:hidden overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-4">
+              {experiences.map((exp) => (
+                <div key={exp.id} className="basis-[85%] flex-shrink-0">
+                  <ExperienceCard exp={exp} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop grid (≥ 640px) */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {experiences.map((exp) => (
               <ExperienceCard key={exp.id} exp={exp} />
             ))}
