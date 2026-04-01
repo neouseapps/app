@@ -1,0 +1,505 @@
+/* =============================================================
+   VSVN DESIGN TOKENS
+   Source: VSVN Brand Kit (Figma)
+   File key: QSou0wN4Z23LzHRtpGrsk8
+   Extracted via Claude + Figma MCP
+
+   Usage:
+     <link rel="stylesheet" href="vsvn-tokens.css" />
+   or:
+     @import url('vsvn-tokens.css');
+============================================================= */
+
+:root {
+  /* -----------------------------------------------------------
+     FONT FAMILIES
+     Source: Global / typography collection
+  ----------------------------------------------------------- */
+  --font-display: 'SVN-Ryhmes Display', Georgia, serif;
+  --font-default: 'SVN-Selecta', 'Google Sans Flex', 'Helvetica Neue', sans-serif;
+  --font-app: 'Google Sans Flex', 'Helvetica Neue', sans-serif;
+  --font-mono: 'Geist Mono', 'Courier New', monospace;
+
+  /* -----------------------------------------------------------
+     COLOR — BRAND
+     Source: VSVN Theme / color/bg/brand & color/text/brand
+  ----------------------------------------------------------- */
+  --color-brand-primary: #0055d2;
+  --color-brand-primary-bright: #1a70ff;
+  --color-brand-primary-hover: #0044b0;
+  --color-brand-primary-bright-hover: #0055d2;
+
+  --color-brand-secondary: #eaf1ff;
+  --color-brand-secondary-hover: #d0e2ff;
+
+  --color-text-brand-primary: #0055d2;
+  --color-text-brand-primary-bright: #1a70ff;
+  --color-text-brand-secondary: #1a70ff;
+
+  /* -----------------------------------------------------------
+     COLOR — NEUTRAL BACKGROUNDS
+     Source: VSVN Theme (VSVN-Light mode) / color/bg/neutral
+  ----------------------------------------------------------- */
+  --color-bg-default: #ffffff;
+  --color-bg-hover: #f0f0f0;
+  --color-bg-dim: #f5f5f5;
+  --color-bg-dim-hover: #e8e8e8;
+  --color-bg-dim-variant: #eeeeee;
+  --color-bg-dim-variant-hover: #e2e2e2;
+  --color-bg-bright: #ffffff;
+  --color-bg-bright-hover: #f5f5f5;
+  --color-bg-inverse: #111111;
+  --color-bg-inverse-hover: #2a2a2a;
+
+  /* -----------------------------------------------------------
+     COLOR — TEXT
+     Source: VSVN Theme / color/text/neutral
+  ----------------------------------------------------------- */
+  --color-text-default: #111111;
+  --color-text-dim: #6b6b6b;
+  --color-text-dim-variant: #9e9e9e;
+  --color-text-bright: #ffffff;
+  --color-text-inverse: #ffffff;
+
+  /* -----------------------------------------------------------
+     COLOR — BORDERS
+     Source: VSVN Theme / color/border
+  ----------------------------------------------------------- */
+  --color-border-default: #dedede;
+  --color-border-input: #c8c8c8;
+  --color-border-brand-primary-bright: #1a70ff;
+
+  /* -----------------------------------------------------------
+     COLOR — STATUS / SEMANTIC
+     Source: VSVN Theme / color/bg & color/text (danger, success, warning, info)
+  ----------------------------------------------------------- */
+
+  /* Danger */
+  --color-bg-danger-default: #d92b2b;
+  --color-bg-danger-bright: #ff4545;
+  --color-bg-danger-hover: #b52020;
+  --color-bg-danger-bright-hover: #d92b2b;
+  --color-text-danger-default: #ff4545;
+  --color-text-danger-bright: #d92b2b;
+  --color-text-danger-hover: #b52020;
+  --color-border-danger-bright: #ff4545;
+
+  /* Success */
+  --color-bg-success-default: #26c870;
+  --color-bg-success-bright: #dcfce7;
+  --color-bg-success-hover: #148048;
+  --color-bg-success-bright-hover: #1a9e5c;
+  --color-text-success-default: #26c870;
+  --color-text-success-bright: #dcfce7;
+  --color-text-success-hover: #148048;
+
+  /* Warning */
+  --color-bg-warning-default: #e07b00;
+  --color-bg-warning-bright: #fff3d6;
+  --color-bg-warning-hover: #b56200;
+  --color-bg-warning-bright-hover: #e07b00;
+  --color-text-warning-default: #fff3d6;
+  --color-text-warning-bright: #e07b00;
+  --color-text-warning-hover: #b56200;
+
+  /* Info */
+  --color-bg-info-default: #29a3ff;
+  --color-bg-info-bright: #dbeafe;
+  --color-bg-info-hover: #005fa3;
+  --color-bg-info-bright-hover: #0077cc;
+  --color-text-info-default: #0077cc;
+  --color-text-info-bright: #29a3ff;
+  --color-text-info-hover: #005fa3;
+
+  /* -----------------------------------------------------------
+     COLOR — ALPHA OVERLAYS
+     Source: VSVN Theme / color/alpha
+  ----------------------------------------------------------- */
+  --color-alpha-black-0: rgba(0, 0, 0, 0);
+  --color-alpha-black-20: rgba(0, 0, 0, 0.2);
+  --color-alpha-black-50: rgba(0, 0, 0, 0.5);
+  --color-alpha-black-70: rgba(0, 0, 0, 0.7);
+  --color-alpha-black-80: rgba(0, 0, 0, 0.8);
+  --color-alpha-black-100: rgba(0, 0, 0, 1);
+
+  --color-alpha-white-0: rgba(255, 255, 255, 0);
+  --color-alpha-white-20: rgba(255, 255, 255, 0.2);
+  --color-alpha-white-50: rgba(255, 255, 255, 0.5);
+  --color-alpha-white-70: rgba(255, 255, 255, 0.7);
+  --color-alpha-white-80: rgba(255, 255, 255, 0.8);
+  --color-alpha-white-100: rgba(255, 255, 255, 1);
+
+  /* -----------------------------------------------------------
+     COLOR — FOCUS
+     Source: VSVN Theme / color/focus
+  ----------------------------------------------------------- */
+  --color-focus-default: #0055d2;
+  --color-focus-danger: #d92b2b;
+
+  /* -----------------------------------------------------------
+     TYPOGRAPHY — DISPLAY
+     Source: App/display-* text styles  |  font: SVN-Ryhmes Display
+  ----------------------------------------------------------- */
+  --text-display-large-family: var(--font-display);
+  --text-display-large-size: 48px;
+  --text-display-large-lh: 54px;
+  --text-display-large-ls: -0.48px;
+  --text-display-large-weight-base: 400;
+  --text-display-large-weight-moderate: 500;
+
+  --text-display-medium-family: var(--font-display);
+  --text-display-medium-size: 36px;
+  --text-display-medium-lh: 40px;
+  --text-display-medium-ls: -0.36px;
+  --text-display-medium-weight-base: 400;
+  --text-display-medium-weight-moderate: 500;
+
+  --text-display-small-family: var(--font-display);
+  --text-display-small-size: 28px;
+  --text-display-small-lh: 32px;
+  --text-display-small-ls: -0.28px;
+  --text-display-small-weight-base: 400;
+  --text-display-small-weight-moderate: 500;
+
+  /* -----------------------------------------------------------
+     TYPOGRAPHY — TITLE
+     Source: App/title-* text styles  |  font: Google Sans Flex
+  ----------------------------------------------------------- */
+  --text-title-screen-family: var(--font-app);
+  --text-title-screen-size: 32px;
+  --text-title-screen-lh: 36px;
+  --text-title-screen-ls: -0.96px;
+  --text-title-screen-weight-base: 400;
+  --text-title-screen-weight-moderate: 500;
+  --text-title-screen-weight-heavy: 600;
+
+  --text-title-section-family: var(--font-app);
+  --text-title-section-size: 24px;
+  --text-title-section-lh: 28px;
+  --text-title-section-ls: -0.72px;
+  --text-title-section-weight-base: 400;
+  --text-title-section-weight-moderate: 500;
+  --text-title-section-weight-heavy: 600;
+
+  --text-title-subsection-family: var(--font-app);
+  --text-title-subsection-size: 18px;
+  --text-title-subsection-lh: 24px;
+  --text-title-subsection-ls: -0.36px;
+  --text-title-subsection-weight-base: 400;
+  --text-title-subsection-weight-moderate: 500;
+  --text-title-subsection-weight-heavy: 600;
+
+  --text-title-default-family: var(--font-app);
+  --text-title-default-size: 16px;
+  --text-title-default-lh: 20px;
+  --text-title-default-ls: -0.32px;
+  --text-title-default-weight-base: 400;
+  --text-title-default-weight-moderate: 500;
+  --text-title-default-weight-heavy: 600;
+
+  --text-title-group-family: var(--font-app);
+  --text-title-group-size: 14px;
+  --text-title-group-lh: 18px;
+  --text-title-group-ls: -0.28px;
+  --text-title-group-weight-base: 400;
+  --text-title-group-weight-moderate: 500;
+  --text-title-group-weight-heavy: 600;
+
+  /* -----------------------------------------------------------
+     TYPOGRAPHY — BODY
+     Source: App/body-* text styles  |  font: Google Sans Flex
+  ----------------------------------------------------------- */
+  --text-body-large-family: var(--font-app);
+  --text-body-large-size: 16px;
+  --text-body-large-lh: 24px;
+  --text-body-large-ls: -0.16px;
+  --text-body-large-weight-base: 400;
+  --text-body-large-weight-moderate: 500;
+  --text-body-large-weight-heavy: 600;
+
+  --text-body-default-family: var(--font-app);
+  --text-body-default-size: 14px;
+  --text-body-default-lh: 20px;
+  --text-body-default-ls: -0.14px;
+  --text-body-default-weight-base: 400;
+  --text-body-default-weight-moderate: 500;
+  --text-body-default-weight-heavy: 600;
+
+  --text-body-small-family: var(--font-app);
+  --text-body-small-size: 12px;
+  --text-body-small-lh: 16px;
+  --text-body-small-ls: -0.12px;
+  --text-body-small-weight-base: 400;
+  --text-body-small-weight-moderate: 500;
+  --text-body-small-weight-heavy: 600;
+
+  /* -----------------------------------------------------------
+     TYPOGRAPHY — CAPTION
+     Source: App/caption text styles  |  font: Google Sans Flex
+  ----------------------------------------------------------- */
+  --text-caption-family: var(--font-app);
+  --text-caption-size: 10px;
+  --text-caption-lh: 14px;
+  --text-caption-ls: -0.2px;
+  --text-caption-weight-base: 400;
+  --text-caption-weight-moderate: 500;
+  --text-caption-weight-heavy: 600;
+
+  /* -----------------------------------------------------------
+     TYPOGRAPHY — MONO
+     Source: App/body-mono text styles  |  font: Geist Mono
+  ----------------------------------------------------------- */
+  --text-mono-large-family: var(--font-mono);
+  --text-mono-large-size: 16px;
+  --text-mono-large-lh: 24px;
+  --text-mono-large-ls: -0.16px;
+
+  --text-mono-default-family: var(--font-mono);
+  --text-mono-default-size: 14px;
+  --text-mono-default-lh: 20px;
+  --text-mono-default-ls: -0.14px;
+
+  --text-mono-small-family: var(--font-mono);
+  --text-mono-small-size: 12px;
+  --text-mono-small-lh: 16px;
+  --text-mono-small-ls: -0.12px;
+
+  /* -----------------------------------------------------------
+     BORDER RADIUS
+     Source: web_component/button/radius-* (VSVN B2C)
+  ----------------------------------------------------------- */
+  --radius-xs: 4px; /* button/radius-extra-small */
+  --radius-sm: 8px; /* button/radius-small        */
+  --radius-md: 12px; /* button/radius-medium       */
+  --radius-lg: 20px; /* button/radius-large        */
+  --radius-full: 9999px;
+
+  /* -----------------------------------------------------------
+     COMPONENT PADDING — BUTTON
+     Source: web_component/button/padding-* (VSVN B2C)
+  ----------------------------------------------------------- */
+  --btn-padding-xs: 6px 10px;
+  --btn-padding-sm: 8px 14px;
+  --btn-padding-md: 10px 18px;
+  --btn-padding-lg: 12px 22px;
+
+  /* -----------------------------------------------------------
+     COMPONENT PADDING — INPUT
+     Source: web_component/input/padding-* (VSVN B2C)
+  ----------------------------------------------------------- */
+  --input-padding-xs: 6px 10px;
+  --input-padding-sm: 8px 14px;
+  --input-padding-md: 10px 14px;
+  --input-padding-lg: 12px 16px;
+
+  /* -----------------------------------------------------------
+     SPACING
+     Derived from layout and component padding rhythm
+  ----------------------------------------------------------- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 48px;
+  --spacing-4xl: 64px;
+
+  /* -----------------------------------------------------------
+     LAYOUT
+     Source: web_size/* (VSVN B2C)
+  ----------------------------------------------------------- */
+  --layout-max-width: 1280px;
+  --layout-margin: 24px;
+  --layout-breakpoint-min: 280px;
+  --layout-breakpoint-max: 1920px;
+  --layout-design-width: 1366px;
+}
+
+/* =============================================================
+   UTILITY CLASSES  (optional — delete if you prefer tokens-only)
+   These mirror the Figma text style names 1:1.
+============================================================= */
+
+/* --- Display --- */
+.text-display-large {
+  font-family: var(--text-display-large-family);
+  font-size: var(--text-display-large-size);
+  line-height: var(--text-display-large-lh);
+  letter-spacing: var(--text-display-large-ls);
+  font-weight: var(--text-display-large-weight-base);
+}
+.text-display-large.moderate {
+  font-weight: var(--text-display-large-weight-moderate);
+}
+
+.text-display-medium {
+  font-family: var(--text-display-medium-family);
+  font-size: var(--text-display-medium-size);
+  line-height: var(--text-display-medium-lh);
+  letter-spacing: var(--text-display-medium-ls);
+  font-weight: var(--text-display-medium-weight-base);
+}
+.text-display-medium.moderate {
+  font-weight: var(--text-display-medium-weight-moderate);
+}
+
+.text-display-small {
+  font-family: var(--text-display-small-family);
+  font-size: var(--text-display-small-size);
+  line-height: var(--text-display-small-lh);
+  letter-spacing: var(--text-display-small-ls);
+  font-weight: var(--text-display-small-weight-base);
+}
+.text-display-small.moderate {
+  font-weight: var(--text-display-small-weight-moderate);
+}
+
+/* --- Title --- */
+.text-title-screen {
+  font-family: var(--text-title-screen-family);
+  font-size: var(--text-title-screen-size);
+  line-height: var(--text-title-screen-lh);
+  letter-spacing: var(--text-title-screen-ls);
+  font-weight: var(--text-title-screen-weight-base);
+}
+.text-title-screen.moderate {
+  font-weight: var(--text-title-screen-weight-moderate);
+}
+.text-title-screen.heavy {
+  font-weight: var(--text-title-screen-weight-heavy);
+}
+
+.text-title-section {
+  font-family: var(--text-title-section-family);
+  font-size: var(--text-title-section-size);
+  line-height: var(--text-title-section-lh);
+  letter-spacing: var(--text-title-section-ls);
+  font-weight: var(--text-title-section-weight-base);
+}
+.text-title-section.moderate {
+  font-weight: var(--text-title-section-weight-moderate);
+}
+.text-title-section.heavy {
+  font-weight: var(--text-title-section-weight-heavy);
+}
+
+.text-title-subsection {
+  font-family: var(--text-title-subsection-family);
+  font-size: var(--text-title-subsection-size);
+  line-height: var(--text-title-subsection-lh);
+  letter-spacing: var(--text-title-subsection-ls);
+  font-weight: var(--text-title-subsection-weight-base);
+}
+.text-title-subsection.moderate {
+  font-weight: var(--text-title-subsection-weight-moderate);
+}
+.text-title-subsection.heavy {
+  font-weight: var(--text-title-subsection-weight-heavy);
+}
+
+.text-title-default {
+  font-family: var(--text-title-default-family);
+  font-size: var(--text-title-default-size);
+  line-height: var(--text-title-default-lh);
+  letter-spacing: var(--text-title-default-ls);
+  font-weight: var(--text-title-default-weight-base);
+}
+.text-title-default.moderate {
+  font-weight: var(--text-title-default-weight-moderate);
+}
+.text-title-default.heavy {
+  font-weight: var(--text-title-default-weight-heavy);
+}
+
+.text-title-group {
+  font-family: var(--text-title-group-family);
+  font-size: var(--text-title-group-size);
+  line-height: var(--text-title-group-lh);
+  letter-spacing: var(--text-title-group-ls);
+  font-weight: var(--text-title-group-weight-base);
+}
+.text-title-group.moderate {
+  font-weight: var(--text-title-group-weight-moderate);
+}
+.text-title-group.heavy {
+  font-weight: var(--text-title-group-weight-heavy);
+}
+
+/* --- Body --- */
+.text-body-large {
+  font-family: var(--text-body-large-family);
+  font-size: var(--text-body-large-size);
+  line-height: var(--text-body-large-lh);
+  letter-spacing: var(--text-body-large-ls);
+  font-weight: var(--text-body-large-weight-base);
+}
+.text-body-large.moderate {
+  font-weight: var(--text-body-large-weight-moderate);
+}
+.text-body-large.heavy {
+  font-weight: var(--text-body-large-weight-heavy);
+}
+
+.text-body-default {
+  font-family: var(--text-body-default-family);
+  font-size: var(--text-body-default-size);
+  line-height: var(--text-body-default-lh);
+  letter-spacing: var(--text-body-default-ls);
+  font-weight: var(--text-body-default-weight-base);
+}
+.text-body-default.moderate {
+  font-weight: var(--text-body-default-weight-moderate);
+}
+.text-body-default.heavy {
+  font-weight: var(--text-body-default-weight-heavy);
+}
+
+.text-body-small {
+  font-family: var(--text-body-small-family);
+  font-size: var(--text-body-small-size);
+  line-height: var(--text-body-small-lh);
+  letter-spacing: var(--text-body-small-ls);
+  font-weight: var(--text-body-small-weight-base);
+}
+.text-body-small.moderate {
+  font-weight: var(--text-body-small-weight-moderate);
+}
+.text-body-small.heavy {
+  font-weight: var(--text-body-small-weight-heavy);
+}
+
+/* --- Caption --- */
+.text-caption {
+  font-family: var(--text-caption-family);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-lh);
+  letter-spacing: var(--text-caption-ls);
+  font-weight: var(--text-caption-weight-base);
+}
+.text-caption.moderate {
+  font-weight: var(--text-caption-weight-moderate);
+}
+.text-caption.heavy {
+  font-weight: var(--text-caption-weight-heavy);
+}
+
+/* --- Mono --- */
+.text-mono-large {
+  font-family: var(--text-mono-large-family);
+  font-size: var(--text-mono-large-size);
+  line-height: var(--text-mono-large-lh);
+  letter-spacing: var(--text-mono-large-ls);
+}
+.text-mono-default {
+  font-family: var(--text-mono-default-family);
+  font-size: var(--text-mono-default-size);
+  line-height: var(--text-mono-default-lh);
+  letter-spacing: var(--text-mono-default-ls);
+}
+.text-mono-small {
+  font-family: var(--text-mono-small-family);
+  font-size: var(--text-mono-small-size);
+  line-height: var(--text-mono-small-lh);
+  letter-spacing: var(--text-mono-small-ls);
+}

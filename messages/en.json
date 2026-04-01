@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "business": "For Business",
+    "newsroom": "Newsroom",
+    "about": "About",
+    "downloadApp": "Download App"
+  },
+  "hero": {
+    "title": "Discover Vietnam",
+    "subtitle": "AI-powered travel guide",
+    "searchPlaceholder": "Search destinations..."
+  }
+}

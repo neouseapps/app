@@ -1,26 +1,167 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@plugin "tailwindcss-animate";
+@import '../styles/vsvn-tokens.css';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Legacy page palette — not in VSVN system, preserved for visual fidelity */
+  --color-navy: #0b1b3d;
+  --color-navy-rgb: 11, 27, 61; /* for rgba() usage */
+  --color-navy-deep: #12234b;
+  --color-navy-mid: #1e325c;
+  --color-accent-red: #9b1c1c;
+  --color-accent-red-rgb: 155, 28, 28;
+  --color-accent-red-dark: #7f1d1d;
+  --color-accent-orange: #f97316;
+  --color-section-bg: #f8fafc;
+
+  /* Layout radius scale (above Tailwind defaults) */
+  --radius-card: 32px; /* was rounded-[2rem]   */
+  --radius-modal: 40px; /* was rounded-[2.5rem] */
+  --radius-panel: 48px; /* was rounded-[3rem]   */
 }
 
 @theme inline {
+  /* System */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+
+  /* Fonts */
+  --font-sans: var(--font-jakarta), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair), serif;
+
+  /* VSVN Brand */
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-primary-bright: var(--color-brand-primary-bright);
+  --color-brand-secondary: var(--color-brand-secondary);
+
+  /* VSVN Backgrounds */
+  --color-bg-default: var(--color-bg-default);
+  --color-bg-dim: var(--color-bg-dim);
+  --color-bg-dim-variant: var(--color-bg-dim-variant);
+  --color-bg-inverse: var(--color-bg-inverse);
+
+  /* VSVN Text */
+  --color-text-default: var(--color-text-default);
+  --color-text-dim: var(--color-text-dim);
+  --color-text-dim-variant: var(--color-text-dim-variant);
+  --color-text-bright: var(--color-text-bright);
+
+  /* VSVN Borders */
+  --color-border-default: var(--color-border-default);
+  --color-border-input: var(--color-border-input);
+
+  /* VSVN Status */
+  --color-bg-danger-default: var(--color-bg-danger-default);
+  --color-bg-success-default: var(--color-bg-success-default);
+  --color-bg-warning-default: var(--color-bg-warning-default);
+  --color-bg-info-default: var(--color-bg-info-default);
+  --color-text-danger-default: var(--color-text-danger-default);
+  --color-text-success-default: var(--color-text-success-default);
+  --color-text-warning-default: var(--color-text-warning-default);
+  --color-text-info-default: var(--color-text-info-default);
+
+  /* Alpha overlays */
+  --color-alpha-black-20: var(--color-alpha-black-20);
+  --color-alpha-black-50: var(--color-alpha-black-50);
+  --color-alpha-black-70: var(--color-alpha-black-70);
+  --color-alpha-white-20: var(--color-alpha-white-20);
+  --color-alpha-white-50: var(--color-alpha-white-50);
+  --color-alpha-white-70: var(--color-alpha-white-70);
+
+  /* Legacy palette → Tailwind utilities (bg-navy, text-navy, etc.) */
+  --color-navy: var(--color-navy);
+  --color-navy-deep: var(--color-navy-deep);
+  --color-navy-mid: var(--color-navy-mid);
+  --color-accent-red: var(--color-accent-red);
+  --color-accent-red-dark: var(--color-accent-red-dark);
+  --color-accent-orange: var(--color-accent-orange);
+  --color-section-bg: var(--color-section-bg);
+
+  /* VSVN Radius */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+
+  /* Layout radius */
+  --radius-card: var(--radius-card);
+  --radius-modal: var(--radius-modal);
+  --radius-panel: var(--radius-panel);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  /* Layout radius utilities */
+  .rounded-card {
+    border-radius: var(--radius-card);
+  }
+  .rounded-modal {
+    border-radius: var(--radius-modal);
+  }
+  .rounded-panel {
+    border-radius: var(--radius-panel);
+  }
+
+  /* Named gradient utilities (replace inline style={}) */
+  .bg-gradient-ocean {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+  }
+  .bg-gradient-sunset {
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+  }
+  .bg-gradient-hero-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(var(--color-navy-rgb), 0.9) 0%,
+      rgba(var(--color-accent-red-rgb), 0.7) 100%
+    );
+  }
+  .bg-gradient-navy-fade {
+    background: linear-gradient(to bottom, var(--color-navy), transparent);
+  }
+
+  /* Dot pattern utilities */
+  .bg-dot-navy {
+    background-image: radial-gradient(rgba(var(--color-navy-rgb), 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .bg-dot-white {
+    background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+
+  /* Glass effects */
+  .glass-dark {
+    background: rgba(var(--color-navy-rgb), 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .bg-navy-glass {
+    background: rgba(var(--color-navy-rgb), 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.text-glow {
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
 }

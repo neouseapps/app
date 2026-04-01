@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "destinations": "Điểm đến",
+    "business": "Doanh nghiệp",
+    "newsroom": "Tin tức",
+    "about": "Giới thiệu",
+    "downloadApp": "Tải app miễn phí"
+  },
+  "hero": {
+    "title": "Khám phá Việt Nam",
+    "subtitle": "Dẫn lối bởi AI",
+    "searchPlaceholder": "Tìm kiếm điểm đến..."
+  }
+}
