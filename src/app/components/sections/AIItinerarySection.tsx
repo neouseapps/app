@@ -74,7 +74,7 @@ function SubmitButton() {
 
 interface ChipCarouselProps {
   chips: string[]
-  selectedOption: string | null
+  selectedOption: string
   onSelect: (chip: string) => void
 }
 
@@ -110,24 +110,16 @@ function ChipCarousel({ chips, selectedOption, onSelect }: ChipCarouselProps) {
 // ─── AIInputPill ──────────────────────────────────────────────────────────────
 
 interface AIInputPillProps {
-  inputValue: string
-  selectedOption: string | null
-  onInputChange: (value: string) => void
+  selectedOption: string
   onChipSelect: (chip: string) => void
 }
 
-function AIInputPill({ inputValue, selectedOption, onInputChange, onChipSelect }: AIInputPillProps) {
+function AIInputPill({ selectedOption, onChipSelect }: AIInputPillProps) {
   return (
-    <div className="rounded-card bg-navy-mid border border-white/10 focus-within:border-accent-orange focus-within:ring-1 focus-within:ring-accent-orange transition-all w-full">
-      {/* Input row */}
+    <div className="rounded-card bg-navy-mid border border-white/10 w-full">
+      {/* Selected option display row */}
       <div className="flex items-center gap-3 px-6 py-4">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => onInputChange(e.target.value)}
-          placeholder="Ví dụ: Gợi ý lịch trình 3 ngày 2 đêm cho gia đình có trẻ nhỏ..."
-          className="flex-1 bg-transparent text-white placeholder-gray-400 focus:outline-none text-base min-w-0"
-        />
+        <p className="flex-1 text-white text-base min-w-0 truncate">{selectedOption}</p>
         <SubmitButton />
       </div>
 
@@ -145,18 +137,7 @@ function AIInputPill({ inputValue, selectedOption, onInputChange, onChipSelect }
 // ─── AIItinerarySection (main export) ────────────────────────────────────────
 
 export function AIItinerarySection() {
-  const [inputValue, setInputValue] = useState('')
-  const [selectedOption, setSelectedOption] = useState<string | null>(null)
-
-  const handleChipSelect = (chip: string) => {
-    setSelectedOption(chip)
-    setInputValue(chip)
-  }
-
-  const handleInputChange = (value: string) => {
-    setInputValue(value)
-    setSelectedOption(null)
-  }
+  const [selectedOption, setSelectedOption] = useState(QUICK_PROMPTS[0])
 
   return (
     <section className="bg-navy border-b border-white/10 w-full relative z-20">
@@ -164,10 +145,8 @@ export function AIItinerarySection() {
         <LeftPanel />
         <div className="lg:w-2/3 w-full">
           <AIInputPill
-            inputValue={inputValue}
             selectedOption={selectedOption}
-            onInputChange={handleInputChange}
-            onChipSelect={handleChipSelect}
+            onChipSelect={setSelectedOption}
           />
         </div>
       </div>
