@@ -132,14 +132,10 @@
       "description": "The Visit Vietnam Story — Connecting the world with the authentic beauty of Vietnam"
     },
     "Hero": {
-      "badge": "The Visit Vietnam Story",
-      "titleLine1": "Connecting the World with the",
-      "titleHighlight": "Authentic Beauty",
-      "titleLine2": "of Vietnam",
-      "subtitle": "An intelligent travel technology platform where every journey is personalized, local culture is celebrated, and partners unite to build a sustainable ecosystem.",
-      "partnersLabel": "Endorsed by & Strategic Partners",
-      "partner1": "Ministry of Culture, Sports & Tourism",
-      "partner2": "Vietnam National Tourism Administration"
+      "badge": "About Visit Vietnam",
+      "title": "A digital platform that supports the entire Vietnam travel journey",
+      "subtitle": "A smart travel platform that connects partners, enables seamless journeys, and elevates Vietnam travel.",
+      "cta": "Explore now"
     },
     "Pillars": {
       "eyebrow": "Core Technology",
@@ -610,12 +606,20 @@
       "description": "Real-time tourism intelligence platform for government bodies, provincial tourism offices, and official agencies across Vietnam."
     },
     "Hero": {
-      "badge": "Official Government Data Platform",
-      "title": "Real Tourism Data.",
-      "titleLine2": "Smarter Decisions.",
-      "subtitle": "Empower policy-making and tourism management with real-time, verified data from Vietnam's national travel platform.",
-      "ctaPrimary": "Request Demo",
-      "ctaSecondary": "Explore Platform"
+      "badge": "National data platform",
+      "title": "Strategic data infrastructure for Vietnam's tourism management",
+      "subtitle": "Empowering Vietnam travel governance through a unified, high-velocity data ecosystem for strategic decision-making",
+      "ctaPrimary": "Explore demo",
+      "ctaSecondary": "Explore the platform",
+      "navCta": "Try the platform"
+    },
+    "NationalSponsorship": {
+      "title": "Endorsed at the national level",
+      "cards": {
+        "0": { "label": "Vietnam National Authority of Tourism (VNAT)" },
+        "1": { "label": "National Data Association (NDA)" },
+        "2": { "label": "National Data Center (NDC)" }
+      }
     },
     "Stats": {
       "0": { "label": "Total Arrivals", "trend": "+12.3%" },
@@ -624,73 +628,75 @@
       "3": { "label": "Satisfaction Score", "trend": null }
     },
     "PainPoints": {
-      "eyebrow": "The Challenge",
-      "title": "Tourism Management is Harder Than It Needs to Be",
-      "subtitle": "Government agencies face structural data gaps that slow down decision-making and policy response.",
+      "eyebrow": "Challenges",
+      "title": "Breaking the digital inertia in Vietnam travel",
+      "subtitle": "Bottlenecks in connectivity, update frequency, and data reliability are hindering national-scale tourism governance",
       "items": {
         "0": {
-          "title": "Fragmented Data",
-          "desc": "Tourism statistics are scattered across dozens of departments and agencies with no unified view."
+          "title": "Data silos & systemic fragmentation",
+          "desc": "Information is scattered across 34 provinces, lacking a unified connection for the Vietnam travel ecosystem"
         },
         "1": {
-          "title": "Slow Response Cycle",
-          "desc": "Quarterly and annual reports arrive too late to respond to fast-moving traveler trends and incidents."
+          "title": "The data-reality anachronism",
+          "desc": "Traditional data aggregation creates significant time lags of 4 to 12 weeks, failing to reflect real-time Vietnam travel market dynamics"
         },
         "2": {
-          "title": "Behavioral Data Gap",
-          "desc": "Spending patterns, route preferences, and traveler motivations remain largely invisible to planners."
+          "title": "Absence of centralized trust architectures",
+          "desc": "The lack of a unified national system for authenticating Vietnam travel businesses and services creates barriers to industry standardization"
         }
       }
     },
     "DashboardFeatures": {
-      "eyebrow": "Platform Modules",
-      "title": "One Dashboard. Total Visibility.",
-      "subtitle": "Four integrated modules designed for tourism authorities, provincial offices, and national policy teams.",
+      "eyebrow": "Visit Vietnam",
+      "title": "Vietnam's integrated framework for tourism excellence",
+      "subtitle": "Gain a national overview, understand local insights, and standardize every sector with Visit Vietnam's dashboard system",
+      "cta": "Explore the dashboard",
       "items": {
         "0": {
-          "title": "Market Overview",
-          "desc": "Monitor real-time arrivals, revenue flows, and source market breakdowns at national and provincial level."
+          "title": "Market overview",
+          "desc": "Integrating visitor volume, revenue, source markets, and seasonal trends into a unified platform"
         },
         "1": {
-          "title": "Destination Heat Map",
-          "desc": "Visualize traveler density and movement patterns across all regions to identify overcrowding and emerging hotspots."
+          "title": "Heatmap analytics",
+          "desc": "Real-time visualization of visitor density, movement patterns, and emerging Vietnam travel destinations nationwide"
         },
         "2": {
-          "title": "Spending Analysis",
-          "desc": "Drill into per-category spending — accommodation, food, transport, activities — segmented by nationality and season."
+          "title": "Spending analysis",
+          "desc": "Aggregating and analyzing tourist spending patterns by category, service segments, and nationality"
         },
         "3": {
-          "title": "Forecasting & Alerts",
-          "desc": "AI-generated demand forecasts and automated alerts help agencies prepare for surges, shortfalls, and safety events."
+          "title": "Forecasting & alerts",
+          "desc": "Leveraging AI to analyze and forecast market demand, capacity, and fluctuations in the Vietnam travel market"
         }
       }
     },
     "ValueProps": {
-      "eyebrow": "Why Agencies Choose Us",
-      "title": "Built for Government-Grade Decision Making",
+      "eyebrow": "Benefits",
+      "title": "Digitalizing excellence, redefining Vietnam travel",
+      "subtitle": "Shaping the national future through data-driven insights and seamless industry-wide connectivity",
       "items": {
         "0": {
-          "title": "Data-Driven Policy",
-          "desc": "Replace anecdotal reporting with verified, real-time metrics that hold up to public scrutiny."
+          "title": "Data-driven strategic agility",
+          "desc": "Establishing a factual data foundation for policy-making, budget allocation, and tourism development planning"
         },
         "1": {
-          "title": "Evidence-Based Targeting",
-          "desc": "Identify high-value source markets and seasonal patterns to allocate promotion budgets with precision."
+          "title": "Strategic marketing calibration",
+          "desc": "Identifying the right markets, destinations, and timing to focus efforts where they deliver the greatest impact"
         },
         "2": {
-          "title": "Automated Reporting",
-          "desc": "Export formatted compliance reports and briefings on demand — no manual compilation required."
+          "title": "Frictionless data workflows",
+          "desc": "Automating data aggregation and monitoring to reduce manual collection and significantly shorten reporting cycles"
         }
       }
     },
     "Contact": {
-      "eyebrow": "Get Access",
-      "title": "Request a Platform Demo",
-      "subtitle": "Schedule a walkthrough with our government solutions team. Demos are free and tailored to your agency's scope.",
+      "eyebrow": "Contact",
+      "title": "Register now to experience the platform",
+      "subtitle": "Connect with Visit Vietnam for professional consultation and a tailored implementation roadmap designed for your governance scope",
       "infoTitle": "Government Relations Office",
       "email": "gov@visitvietnam.asia",
       "phone": "+84 (28) 1234 5678",
-      "address": "District 1, Ho Chi Minh City, Vietnam",
+      "address": "Bach Dang Ward, Hai Ba Trung District, Hanoi",
       "hours": "Mon–Fri 8am–5pm · Sat 8am–12pm",
       "fields": {
         "organization": "Organization Name",

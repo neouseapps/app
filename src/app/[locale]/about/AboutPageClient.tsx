@@ -10,7 +10,6 @@ import {
   Check,
   CheckCircle,
   CloudFog,
-  Compass,
   Database,
   Eye,
   Handshake,
@@ -19,7 +18,6 @@ import {
   Newspaper,
   Quote,
   Share2,
-  ShieldCheck,
   Star,
   Target,
   X,
@@ -157,12 +155,7 @@ export default function AboutPageClient() {
               letterSpacing: 'var(--web_typo-display-extralarge-letter-spacing, -0.48px)',
             }}
           >
-            {tHero('titleLine1')}
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-brand-primary-bright-hover)] to-[var(--color-text-bright)]">
-              {tHero('titleHighlight')}
-            </span>{' '}
-            {tHero('titleLine2')}
+            {tHero('title')}
           </h1>
           <p
             className="font-normal mb-10 max-w-2xl mx-auto"
@@ -176,35 +169,13 @@ export default function AboutPageClient() {
           >
             {tHero('subtitle')}
           </p>
-
-          {/* Partners */}
-          <div className="pt-8 border-t border-[var(--color-alpha-white-20)] inline-block">
-            <p className="text-xs text-[var(--color-alpha-white-50)] uppercase tracking-widest font-semibold mb-6">
-              {tHero('partnersLabel')}
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80">
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="w-8 h-8 text-bg-warning-default" />
-                <div className="text-left text-white">
-                  <p className="text-xs font-bold uppercase leading-tight">
-                    {tHero('partner1').split('\n').map((line, i) => (
-                      <React.Fragment key={i}>{i > 0 && <br />}{line}</React.Fragment>
-                    ))}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Compass className="w-8 h-8 text-[var(--color-brand-primary-bright)]" />
-                <div className="text-left text-white">
-                  <p className="text-xs font-bold uppercase leading-tight">
-                    {tHero('partner2').split('\n').map((line, i) => (
-                      <React.Fragment key={i}>{i > 0 && <br />}{line}</React.Fragment>
-                    ))}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-bg-inverse font-semibold text-sm hover:bg-white/90 transition-colors"
+          >
+            {tHero('cta')}
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </section>
 
@@ -434,7 +405,7 @@ export default function AboutPageClient() {
       {/* ================================================================
           6. CONTACT
       ================================================================ */}
-      <section className="py-24 bg-white">
+      <section id="contact" className="py-24 bg-white">
         <div className="max-w-[1440px] mx-auto px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-default font-bold text-bg-inverse mb-4">

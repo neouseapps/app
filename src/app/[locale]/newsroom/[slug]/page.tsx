@@ -10,6 +10,8 @@ import { ChevronRight, CalendarDays } from 'lucide-react'
 import { Navbar } from '../../../components/Navbar'
 import { Footer } from '../../../components/Footer'
 import { Badge } from '../../../components/ui/badge'
+import { NewsCard } from '../../../components/shared'
+import { AppDownloadCTA } from '../../../components/tai-app/AppDownloadCTA'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -350,7 +352,7 @@ const MOCK_POSTS: Record<string, NewsPost> = {
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function Breadcrumb({ category, title }: { category: string; title: string }) {
+function Breadcrumb({ title }: { title: string }) {
   return (
     <nav aria-label="breadcrumb" className="flex items-center gap-1.5 text-xs mb-6 flex-wrap"
       style={{ color: 'var(--color-text-dim-variant)', fontFamily: 'var(--font-default)' }}>
@@ -358,63 +360,8 @@ function Breadcrumb({ category, title }: { category: string; title: string }) {
       <ChevronRight className="w-3 h-3 flex-shrink-0" />
       <Link href="/newsroom" className="hover:underline" style={{ color: 'var(--color-text-dim)' }}>Tin tức</Link>
       <ChevronRight className="w-3 h-3 flex-shrink-0" />
-      <span className="hover:underline cursor-default" style={{ color: 'var(--color-text-dim)' }}>{category}</span>
-      <ChevronRight className="w-3 h-3 flex-shrink-0" />
       <span className="line-clamp-1 max-w-[200px]">{title}</span>
     </nav>
-  )
-}
-
-function ArticleGallery({ images }: { images: { src: string; alt: string }[] }) {
-  if (!images.length) return null
-  const [main, ...rest] = images
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="mt-8 mb-8"
-    >
-      <div className="grid grid-cols-3 gap-2 rounded-2xl overflow-hidden" style={{ height: 280 }}>
-        <div className="col-span-2 relative">
-          <Image src={main.src} alt={main.alt} fill className="object-cover" />
-        </div>
-        <div className="flex flex-col gap-2">
-          {rest.slice(0, 2).map((img, i) => (
-            <div key={i} className="relative flex-1">
-              <Image src={img.src} alt={img.alt} fill className="object-cover" />
-            </div>
-          ))}
-        </div>
-      </div>
-      <p className="text-center mt-2 text-xs" style={{ color: 'var(--color-text-dim-variant)', fontFamily: 'var(--font-default)' }}>
-        {main.alt}
-      </p>
-    </motion.div>
-  )
-}
-
-function RelatedPostCard({ post }: { post: RelatedPost }) {
-  return (
-    <Link href={`/newsroom/${post.slug}`} className="flex gap-3 group py-3 border-b last:border-0"
-      style={{ borderColor: 'var(--color-border-default)' }}>
-      <div className="relative w-[72px] h-[72px] rounded-xl overflow-hidden flex-shrink-0">
-        <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-xs font-semibold mb-1" style={{ color: 'var(--color-brand-primary)', fontFamily: 'var(--font-default)' }}>
-          {post.category}
-        </p>
-        <p className="text-sm font-medium leading-snug line-clamp-2 group-hover:underline"
-          style={{ color: 'var(--color-text-default)', fontFamily: 'var(--font-default)' }}>
-          {post.title}
-        </p>
-        <p className="text-xs mt-1" style={{ color: 'var(--color-text-dim-variant)', fontFamily: 'var(--font-default)' }}>
-          {post.date}
-        </p>
-      </div>
-    </Link>
   )
 }
 
@@ -434,86 +381,55 @@ export default function NewsArticlePage() {
       <Navbar variant="light" />
 
       <main className="flex-1 pt-20">
-        {/* Breadcrumb */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-          <Breadcrumb category={post.category} title={post.title} />
-        </div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+          {/* Breadcrumb + header */}
+          <Breadcrumb title={post.title} />
 
-        {/* Hero Banner */}
-        <div className="relative w-full" style={{ height: 440 }}>
-          <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.55) 100%)' }}
-          />
-          <div className="absolute bottom-8 left-0 right-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Badge className="mb-3"
-              style={{ background: 'var(--color-brand-primary)', color: '#fff', borderColor: 'transparent' }}>
-              {post.category}
-            </Badge>
-            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-default)' }}>
-              {post.imageCaption}
-            </p>
+          <h1
+            className="font-medium mb-5 leading-tight"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(32px, 4vw, 56px)',
+              letterSpacing: '-0.02em',
+              color: 'var(--color-text-default)',
+            }}
+          >
+            {post.title}
+          </h1>
+
+          <div className="flex flex-wrap items-center gap-3 mb-8">
+            <Badge>{post.category}</Badge>
+            <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--color-text-dim)', fontFamily: 'var(--font-default)' }}>
+              <CalendarDays className="w-4 h-4" />
+              <span>{post.date}</span>
+            </div>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="lg:grid lg:grid-cols-[1fr_340px] lg:gap-12">
+          {/* Sapo */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="pl-4 py-1 mb-8"
+            style={{
+              borderLeft: '3px solid var(--color-brand-primary)',
+              fontFamily: 'var(--font-default)',
+              fontSize: 16,
+              lineHeight: '28px',
+              color: 'var(--color-text-dim)',
+              fontStyle: 'italic',
+            }}
+          >
+            {post.excerpt}
+          </motion.p>
 
-            {/* ── Left column: Article ── */}
-            <article>
-              <header className="mb-8">
-                <h1
-                  className="font-medium mb-5 leading-tight"
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(28px, 4vw, 48px)',
-                    letterSpacing: '-0.02em',
-                    color: 'var(--color-text-default)',
-                  }}
-                >
-                  {post.title}
-                </h1>
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--color-text-dim)', fontFamily: 'var(--font-default)' }}>
-                    <CalendarDays className="w-4 h-4" />
-                    <span>{post.date}</span>
-                  </div>
-                </div>
-              </header>
-
-              {/* Sapo */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="mb-8 pl-4 py-1"
-                style={{
-                  borderLeft: '3px solid var(--color-brand-primary)',
-                  fontFamily: 'var(--font-default)',
-                  fontSize: 16,
-                  lineHeight: '28px',
-                  color: 'var(--color-text-dim)',
-                  fontStyle: 'italic',
-                }}
-              >
-                {post.excerpt}
-              </motion.div>
-
-              <ArticleGallery images={post.gallery} />
-
-              {/* Body sections */}
-              <div className="space-y-8">
-                {post.content.map((section, i) => (
+          {/* Article body */}
+          <article>
+            {/* Body sections — gallery images interleaved after sections */}
+            <div className="space-y-8">
+              {post.content.map((section, i) => (
+                <React.Fragment key={section.id}>
                   <motion.section
-                    key={section.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -534,50 +450,67 @@ export default function NewsArticlePage() {
                       {section.body}
                     </p>
                   </motion.section>
-                ))}
-              </div>
 
-              {/* Mobile related posts */}
-              <aside className="lg:hidden mt-12 pt-8 border-t" style={{ borderColor: 'var(--color-border-default)' }}>
-                <h2 className="font-bold mb-6"
-                  style={{ fontFamily: 'var(--font-default)', fontSize: 18, color: 'var(--color-text-default)' }}>
-                  Bài viết liên quan
-                </h2>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {post.relatedPosts.map((rp) => (
-                    <RelatedPostCard key={rp.slug} post={rp} />
-                  ))}
-                </div>
-              </aside>
-            </article>
-
-            {/* ── Right column: Sidebar ── */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-[96px] space-y-6">
-                <div className="rounded-2xl p-5"
-                  style={{ background: 'var(--color-bg-default)', border: '1px solid var(--color-border-default)' }}>
-                  <h2 className="font-bold text-base pb-2"
-                    style={{
-                      fontFamily: 'var(--font-default)',
-                      color: 'var(--color-text-default)',
-                      borderBottom: '2px solid var(--color-brand-primary)',
-                      display: 'inline-block',
-                    }}>
-                    Bài viết liên quan
-                  </h2>
-                  <div className="mt-4">
-                    {post.relatedPosts.map((rp) => (
-                      <RelatedPostCard key={rp.slug} post={rp} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </aside>
-
-          </div>
+                  {/* Insert gallery image after the section at index matching the gallery slot */}
+                  {post.gallery[i] && (
+                    <motion.figure
+                      initial={{ opacity: 0, y: 24 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="m-0"
+                    >
+                      <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
+                        <Image
+                          src={post.gallery[i].src}
+                          alt={post.gallery[i].alt}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 768px"
+                        />
+                      </div>
+                      <figcaption className="text-center mt-2 text-xs" style={{ color: 'var(--color-text-dim-variant)', fontFamily: 'var(--font-default)' }}>
+                        {post.gallery[i].alt}
+                      </figcaption>
+                    </motion.figure>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </article>
         </div>
+
+        {/* Related posts — full-width 3-col section */}
+        <section className="border-t" style={{ borderColor: 'var(--color-border-default)' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <h2
+              className="font-bold text-xl pb-2 mb-8 inline-block"
+              style={{
+                fontFamily: 'var(--font-default)',
+                color: 'var(--color-text-default)',
+                borderBottom: '2px solid var(--color-brand-primary)',
+              }}
+            >
+              Bài viết liên quan
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {post.relatedPosts.map((rp) => (
+                <NewsCard
+                  key={rp.slug}
+                  slug={rp.slug}
+                  image={rp.image}
+                  title={rp.title}
+                  category={rp.category}
+                  date={rp.date}
+                  headingLevel="h3"
+                />
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
+      <AppDownloadCTA />
       <Footer />
     </div>
   )

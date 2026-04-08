@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Navbar } from '../../components/Navbar'
 import { Footer } from '../../components/Footer'
 import { Button } from '../../components/ui/button'
 import {
   ShieldCheck,
-  TrendingUp,
   Database,
   Clock,
   EyeOff,
@@ -21,92 +21,20 @@ import {
   Mail,
   Phone,
   MapPin,
-  ChevronDown,
   CheckCircle2,
 } from 'lucide-react'
 
 // ---------------------------------------------------------------------------
 // Integer counter hook
 // ---------------------------------------------------------------------------
-function useCounterOnVisible(target: number) {
-  const [count, setCount] = useState(0)
-  const [started, setStarted] = useState(false)
-  const ref = useRef<HTMLSpanElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStarted(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.5 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!started) return
-    let frame: number
-    const duration = 1200
-    const start = performance.now()
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.round(eased * target))
-      if (progress < 1) frame = requestAnimationFrame(tick)
-    }
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
-  }, [started, target])
-
-  return { count, ref }
-}
-
 // ---------------------------------------------------------------------------
-// Float counter hook (for decimals like 2.4, 4.2, 4.6)
+// Smooth scroll helper (matches ForBusiness)
 // ---------------------------------------------------------------------------
-function useFloatCounterOnVisible(target: number, decimals = 1) {
-  const [count, setCount] = useState(0)
-  const [started, setStarted] = useState(false)
-  const ref = useRef<HTMLSpanElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStarted(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.5 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!started) return
-    let frame: number
-    const duration = 1200
-    const start = performance.now()
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(parseFloat((eased * target).toFixed(decimals)))
-      if (progress < 1) frame = requestAnimationFrame(tick)
-    }
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
-  }, [started, target, decimals])
-
-  return { count, ref }
+function smoothScrollTo(id: string) {
+  const el = document.getElementById(id)
+  if (!el) return
+  const y = el.getBoundingClientRect().top + window.scrollY - 80
+  window.scrollTo({ top: y, behavior: 'smooth' })
 }
 
 // ---------------------------------------------------------------------------
@@ -115,119 +43,39 @@ function useFloatCounterOnVisible(target: number, decimals = 1) {
 function HeroSection() {
   const t = useTranslations('ForGovernancePage.Hero')
   return (
-    <section
-      className="relative h-[90vh] min-h-[700px] flex items-center overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, var(--color-bg-inverse) 0%, #0d2b1e 50%, #1a3a2a 100%)',
-      }}
-    >
-      {/* Subtle grid overlay */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)',
-          backgroundSize: '32px 32px',
-        }}
+    <section className="relative h-[90vh] min-h-[700px] flex items-center overflow-hidden bg-[var(--color-bg-inverse)]">
+      {/* Background image */}
+      <Image
+        src="/images/hero-for-governance.png"
+        alt="For Government"
+        fill
+        className="object-cover object-center"
+        priority
+        unoptimized
       />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40" />
 
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-8 mt-16">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-[832px] mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-white/90 text-sm font-medium mb-6 bg-white/10 backdrop-blur-md border border-white/20">
             <ShieldCheck className="w-4 h-4 text-[var(--color-brand-primary)]" />
             {t('badge')}
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-white leading-[1.2] mb-6">
-            {t('title')}<br />{t('titleLine2')}
+            {t('title')}
           </h1>
           <p className="text-lg text-white/80 mb-8 leading-relaxed max-w-xl mx-auto">
             {t('subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild variant="brand" size="lg">
-              <a href="#contact">{t('ctaPrimary')}</a>
+          <div className="flex flex-col gap-4 items-center w-64 mx-auto">
+            <Button variant="ghost" size="lg" className="w-full text-white border-white/30 hover:bg-white/10" onClick={() => smoothScrollTo('features')}>
+              {t('ctaSecondary')}
             </Button>
-            <Button asChild variant="ghost" size="lg" className="text-white border-white/30 hover:bg-white/10">
-              <a href="#features">{t('ctaSecondary')}</a>
+            <Button variant="brand" size="lg" className="w-full" onClick={() => smoothScrollTo('contact')}>
+              {t('ctaPrimary')}
             </Button>
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ---------------------------------------------------------------------------
-// Stats Dashboard Section
-// ---------------------------------------------------------------------------
-function StatsDashboardSection() {
-  const t = useTranslations('ForGovernancePage.Stats')
-
-  // 2.4M arrivals
-  const arrivals = useFloatCounterOnVisible(2.4)
-  // $847 spending (integer)
-  const spending = useCounterOnVisible(847)
-  // 4.2 days stay
-  const stay = useFloatCounterOnVisible(4.2)
-  // 4.6 satisfaction
-  const satisfaction = useFloatCounterOnVisible(4.6)
-
-  const stats = [
-    {
-      ref: arrivals.ref,
-      value: arrivals.count.toFixed(1),
-      prefix: '',
-      suffix: 'M',
-      label: t('0.label'),
-      trend: t('0.trend'),
-    },
-    {
-      ref: spending.ref,
-      value: spending.count.toLocaleString('en-US'),
-      prefix: '$',
-      suffix: '',
-      label: t('1.label'),
-      trend: t('1.trend'),
-    },
-    {
-      ref: stay.ref,
-      value: stay.count.toFixed(1),
-      prefix: '',
-      suffix: ' days',
-      label: t('2.label'),
-      trend: null,
-    },
-    {
-      ref: satisfaction.ref,
-      value: satisfaction.count.toFixed(1),
-      prefix: '',
-      suffix: '★',
-      label: t('3.label'),
-      trend: null,
-    },
-  ]
-
-  return (
-    <section className="py-16 bg-[var(--color-bg-default)] border-y border-[var(--color-border-default)]">
-      <div className="max-w-[1440px] mx-auto px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[var(--color-border-default)]">
-          {stats.map((stat, i) => (
-            <div key={i} className="p-6 text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[var(--color-text-default)] mb-1 flex justify-center items-baseline gap-0.5">
-                <span className="text-2xl md:text-3xl font-medium text-[var(--color-text-dim)]">{stat.prefix}</span>
-                <span ref={stat.ref}>{stat.value}</span>
-                <span className="text-xl md:text-2xl font-medium text-[var(--color-text-dim)] ml-0.5">{stat.suffix}</span>
-              </div>
-              {stat.trend && (
-                <div className="inline-flex items-center gap-1 text-xs font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded-full mb-2">
-                  <TrendingUp className="w-3 h-3" />
-                  {stat.trend}
-                </div>
-              )}
-              <p className="text-[var(--color-text-dim)] font-medium text-sm">{stat.label}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -264,16 +112,16 @@ function PainPointsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-12">
           {items.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="p-4"
+              className="bg-white p-4 rounded-[16px] shadow-md max-w-[320px] mx-auto w-full"
             >
-              <div className="mb-4 text-[var(--color-brand-secondary)]">
-                <Icon className="w-12 h-12" />
+              <div className="w-10 h-10 flex items-center justify-center text-[var(--color-text-dim)] mb-3">
+                <Icon className="w-10 h-10" />
               </div>
-              <h4 className="text-xl font-bold text-bg-inverse mb-2 font-default">{title}</h4>
+              <h4 className="text-xl font-default font-bold text-[var(--color-text-default)] mb-3">{title}</h4>
               <p className="text-[var(--color-text-dim)] leading-relaxed text-sm">{desc}</p>
             </div>
           ))}
@@ -302,29 +150,75 @@ function DashboardFeaturesSection() {
   return (
     <section id="features" className="py-24 bg-[var(--color-bg-default)]">
       <div className="max-w-[1440px] mx-auto px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-sm font-bold text-[var(--color-brand-primary)] tracking-wider uppercase mb-2">
-            {t('eyebrow')}
-          </h2>
-          <h3 className="text-3xl md:text-4xl font-display font-medium text-[var(--color-text-default)] leading-[1.3] mb-4">
-            {t('title')}
-          </h3>
-          <p className="text-[var(--color-text-dim)] text-lg leading-relaxed">
-            {t('subtitle')}
-          </p>
-        </div>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left: text content */}
+          <div className="flex flex-col">
+            <h2 className="text-sm font-bold text-[var(--color-brand-primary)] tracking-wider uppercase mb-4">
+              {t('eyebrow')}
+            </h2>
+            <h3 className="text-3xl md:text-4xl font-display font-medium text-[var(--color-text-default)] leading-[1.3] mb-4">
+              {t('title')}
+            </h3>
+            <p className="text-[var(--color-text-dim)] text-lg leading-relaxed mb-8">
+              {t('subtitle')}
+            </p>
+            <Button variant="brand" size="lg" className="w-fit" onClick={() => smoothScrollTo('contact')}>
+              {t('cta')}
+            </Button>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="bg-white p-4 rounded-[16px] shadow-sm border border-[var(--color-border-default)]"
-            >
-              <div className="w-8 h-8 flex items-center justify-center text-[var(--color-brand-primary)] mb-3">
-                <Icon className="w-8 h-8" />
+          {/* Right: 2x2 card grid */}
+          <div className="grid grid-cols-2 gap-6">
+            {features.map(({ icon: Icon, title, desc }) => (
+              <div
+                key={title}
+                className="bg-white p-4 rounded-[16px] shadow-md text-center"
+              >
+                <div className="w-10 h-10 flex items-center justify-center text-[var(--color-brand-primary)] mb-3 mx-auto">
+                  <Icon className="w-10 h-10" />
+                </div>
+                <h4 className="text-base font-default font-bold text-[var(--color-text-default)] mb-2">{title}</h4>
+                <p className="text-[var(--color-text-dim)] leading-relaxed text-sm">{desc}</p>
               </div>
-              <h4 className="text-xl font-default font-bold text-[var(--color-text-default)] mb-3">{title}</h4>
-              <p className="text-[var(--color-text-dim)] leading-relaxed text-sm">{desc}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// National Sponsorship Section
+// ---------------------------------------------------------------------------
+function NationalSponsorshipSection() {
+  const t = useTranslations('ForGovernancePage.NationalSponsorship')
+  const cards = [
+    { src: '/images/governance/timeless-charm.png', label: t('cards.0.label') },
+    { src: '/images/governance/hiep-hoi.png', label: t('cards.1.label') },
+  ]
+  return (
+    <section
+      className="py-16 relative"
+      style={{ background: 'linear-gradient(180deg, var(--color-alpha-black-20) 0%, var(--color-alpha-black-80) 100%), var(--color-bg-brand-primary-dim)' }}
+    >
+      <div className="max-w-[1440px] mx-auto px-8 text-center">
+        <h3
+          className="text-3xl md:text-4xl font-display font-medium leading-[1.3] mb-12"
+          style={{ background: 'linear-gradient(77deg, #FFDDB7 1%, #FFF7EE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
+        >
+          {t('title')}
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-2xl mx-auto">
+          {cards.map(({ src, label }) => (
+            <div key={label} className="flex flex-col items-center gap-4">
+              <div className="rounded-[24px] p-8" style={{ backgroundColor: 'color-mix(in srgb, var(--color-brand-primary) 10%, transparent)' }}>
+                <div className="relative w-24 h-24">
+                  <Image src={src} alt={label} fill className="object-contain" unoptimized />
+                </div>
+              </div>
+              <p className="text-white/90 text-[20px] font-medium text-center leading-snug">{label}</p>
             </div>
           ))}
         </div>
@@ -349,22 +243,18 @@ function ValuePropsSection() {
   }))
 
   return (
-    <section className="py-16 bg-[var(--color-bg-inverse)] text-white relative">
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-          backgroundSize: '24px 24px',
-        }}
-      />
-      <div className="max-w-[1440px] mx-auto px-8 relative z-10">
-        <div className="text-center mb-12">
+    <section className="py-16 bg-[var(--color-bg-inverse)] text-white">
+      <div className="max-w-[1440px] mx-auto px-8">
+        <div className="text-center max-w-[704px] mx-auto mb-12">
           <h2 className="text-sm font-bold text-[var(--color-brand-primary)] tracking-wider uppercase mb-2">
             {t('eyebrow')}
           </h2>
-          <h3 className="text-3xl md:text-4xl font-display font-medium text-white leading-[1.3]">
+          <h3 className="text-3xl md:text-4xl font-display font-medium text-white leading-[1.3] mb-4">
             {t('title')}
           </h3>
+          <p className="text-white/70 text-lg leading-relaxed">
+            {t('subtitle')}
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/20">
           {items.map(({ icon: Icon, title, desc }) => (
@@ -428,54 +318,9 @@ function ContactFormSection() {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12">
-          {/* Contact info */}
-          <div className="bg-[var(--color-bg-inverse)] rounded-[24px] p-8 text-white flex flex-col justify-between">
-            <div>
-              <h4 className="text-xl font-bold mb-6">{t('infoTitle')}</h4>
-              <div className="space-y-5">
-                <a
-                  href={`mailto:${t('email')}`}
-                  className="flex items-start gap-3 text-white/80 hover:text-white transition-colors"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/50 mb-0.5">Email</p>
-                    <p className="text-sm font-medium">{t('email')}</p>
-                  </div>
-                </a>
-                <div className="flex items-start gap-3 text-white/80">
-                  <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/50 mb-0.5">Phone</p>
-                    <p className="text-sm font-medium">{t('phone')}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 text-white/80">
-                  <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/50 mb-0.5">Office</p>
-                    <p className="text-sm font-medium">{t('address')}</p>
-                    <p className="text-xs text-white/50 mt-1">{t('hours')}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-10 pt-8 border-t border-white/10">
-              <p className="text-xs text-white/50 leading-relaxed">
-                All data shared in this form is handled in accordance with Vietnam's personal data protection regulations (Decree 13/2023/ND-CP).
-              </p>
-            </div>
-          </div>
-
+        <div className="max-w-[620px] mx-auto flex flex-col gap-12">
           {/* Form */}
-          <div className="bg-white rounded-[24px] p-8 shadow-sm border border-[var(--color-border-default)]">
+          <div className="bg-white rounded-[24px] p-8 shadow-md">
             {isSubmitted ? (
               <div className="flex flex-col items-center justify-center h-full text-center py-12">
                 <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-6">
@@ -576,79 +421,41 @@ function ContactFormSection() {
               </form>
             )}
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
-// ---------------------------------------------------------------------------
-// FAQ Section
-// ---------------------------------------------------------------------------
-function FaqSection() {
-  const t = useTranslations('ForGovernancePage.FAQ')
-  const faqs = [0, 1, 2, 3, 4].map((i) => ({
-    q: t(`items.${i}.q`),
-    a: t(`items.${i}.a`),
-  }))
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
-  const toggleFaq = useCallback(
-    (idx: number) => setOpenFaq((prev) => (prev === idx ? null : idx)),
-    [],
-  )
-
-  return (
-    <section className="py-24 bg-[var(--color-bg-default)]">
-      <div className="max-w-[1440px] mx-auto px-8">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-display font-medium text-[var(--color-text-default)] text-center mb-2">
-            {t('title')}
-          </h2>
-          <p className="text-[var(--color-text-dim)] text-center mb-10">
-            {t('subtitle')}
-          </p>
-
-          <div className="bg-[var(--color-bg-dim)] rounded-2xl px-6 py-4 mb-10 flex items-center gap-3">
-            <Mail className="w-4 h-4 text-[var(--color-brand-primary)] shrink-0" />
-            <p className="text-sm text-[var(--color-text-dim)]">
-              Still have questions?{' '}
-              <a
-                href={`mailto:${t('contactEmail')}`}
-                className="font-medium text-[var(--color-text-default)] hover:text-[var(--color-brand-primary)] transition-colors"
-              >
-                {t('contactEmail')}
-              </a>
-            </p>
-          </div>
-
-          <div>
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className={`border-b border-[var(--color-border-default)] ${idx === 0 ? 'border-t' : ''}`}
-              >
-                <button
-                  className="w-full py-4 flex justify-between items-center text-left gap-4"
-                  onClick={() => toggleFaq(idx)}
+          {/* Contact info */}
+          <div className="bg-white rounded-[24px] p-8">
+            <div>
+              <h4 className="text-xl font-bold mb-6 text-[var(--color-text-default)]">{t('infoTitle')}</h4>
+              <div className="space-y-5 flex flex-col items-start">
+                <a
+                  href={`mailto:${t('email')}`}
+                  className="flex items-center gap-3 text-[var(--color-text-dim)] hover:text-[var(--color-text-default)] transition-colors"
                 >
-                  <span className="font-semibold text-[var(--color-text-default)]">{faq.q}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[var(--color-text-dim-variant)] shrink-0 transition-transform duration-200 ${
-                      openFaq === idx ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openFaq === idx ? 'max-h-96 opacity-100 pb-4' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <p className="text-[var(--color-text-dim)] text-sm leading-relaxed">{faq.a}</p>
+                  <div className="w-9 h-9 rounded-xl bg-black/10 flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <p className="text-sm font-medium">{t('email')}</p>
+                </a>
+                <div className="flex items-center gap-3 text-[var(--color-text-dim)]">
+                  <div className="w-9 h-9 rounded-xl bg-black/10 flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <p className="text-sm font-medium">{t('phone')}</p>
+                </div>
+                <div className="flex items-center gap-3 text-[var(--color-text-dim)]">
+                  <div className="w-9 h-9 rounded-xl bg-black/10 flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{t('address')}</p>
+                    <p className="text-xs text-[var(--color-text-dim-variant)] mt-1">{t('hours')}</p>
+                  </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
+
       </div>
     </section>
   )
@@ -658,17 +465,17 @@ function FaqSection() {
 // Page
 // ---------------------------------------------------------------------------
 export default function ForGovernancePageClient() {
+  const tHero = useTranslations('ForGovernancePage.Hero')
   return (
     <div className="font-default text-[var(--color-text-default)] antialiased bg-white scroll-smooth">
-      <Navbar variant="light" />
+      <Navbar variant="light" cta={{ label: tHero('navCta'), onClick: () => smoothScrollTo('contact') }} />
       <main>
         <HeroSection />
-        <StatsDashboardSection />
         <PainPointsSection />
         <DashboardFeaturesSection />
+        <NationalSponsorshipSection />
         <ValuePropsSection />
         <ContactFormSection />
-        <FaqSection />
       </main>
       <Footer />
     </div>

@@ -79,6 +79,22 @@ export function HeroCardStack() {
   }, [phase, displayText, index, paused, t])
 
   return (
+    <>
+    <style>{`
+      @property --btn-angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+      }
+      @keyframes btn-spin {
+        to { --btn-angle: 360deg; }
+      }
+      .btn-gradient-spin {
+        --btn-angle: 0deg;
+        animation: btn-spin 3s linear infinite;
+        background: conic-gradient(from var(--btn-angle), #c084fc, #818cf8, #60a5fa, #c084fc) !important;
+      }
+    `}</style>
     <Link
       href="/tai-app"
       className="block w-full max-w-[390px] rounded-[24px] overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2"
@@ -87,23 +103,23 @@ export function HeroCardStack() {
       onMouseLeave={() => setPaused(false)}
     >
       <div
-        className="flex flex-row items-end h-[140px] gap-1 px-5 border rounded-[24px] overflow-hidden"
+        className="flex flex-row items-center h-[140px] gap-1 px-5 border rounded-[24px] overflow-hidden backdrop-blur-md"
         style={{
-          background: '#fff',
-          borderColor: 'rgba(255,255,255,0.4)',
+          background: 'rgba(255,255,255,0.3)',
+          borderColor: 'rgba(255,255,255,0.5)',
           boxShadow: '0px 8px 16px rgba(0,0,0,0.1), 0px 0px 4px rgba(0,0,0,0.06)',
         }}
       >
-        {/* ── Left: typewriter content ── */}
+        {/* ── Typewriter content ── */}
         <div className="flex flex-1 flex-col justify-center gap-4 py-5 min-w-0 overflow-hidden">
           <p
-            className="font-default text-[var(--color-text-default)] text-left"
+            className="font-default text-white text-left"
             style={{
               fontSize: 18,
               fontWeight: 500,
               lineHeight: '24px',
               letterSpacing: '-0.36px',
-              minHeight: 48, // reserve 2 lines so layout stays stable
+              minHeight: 48,
             }}
           >
             {displayText}
@@ -115,19 +131,34 @@ export function HeroCardStack() {
             </span>
           </p>
 
-          {/* Dark pill CTA */}
+          {/* White pill CTA with GIF on left — full width, animated gradient border */}
           <div
-            className="inline-flex items-center justify-center rounded-full w-[180px] shrink-0"
+            className="rounded-full w-full p-[1.5px] btn-gradient-spin"
             style={{
-              background: 'var(--color-bg-inverse)',
-              padding: '8px 6px',
-              boxShadow: '0px 8px 16px rgba(0,0,0,0.1), 0px 0px 4px rgba(0,0,0,0.06)',
+              boxShadow: '0px 2px 8px rgba(0,0,0,0.08)',
             }}
           >
+          <div
+            className="flex items-center justify-center gap-2 rounded-full w-full"
+            style={{
+              background: '#ffffff',
+              padding: '6px 14px 6px 6px',
+            }}
+          >
+            <div className="relative size-7 rounded-full overflow-hidden shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/hero-cards/app-download.gif"
+                alt=""
+                aria-hidden
+                className="absolute object-cover w-full h-full"
+                draggable={false}
+              />
+            </div>
             <span
-              className="font-default overflow-hidden text-ellipsis whitespace-nowrap text-center"
+              className="font-default overflow-hidden text-ellipsis whitespace-nowrap"
               style={{
-                color: 'var(--color-text-neutral-inverse, #f7f6f4)',
+                color: 'var(--color-text-default)',
                 fontSize: 14,
                 fontWeight: 500,
                 lineHeight: '20px',
@@ -137,22 +168,10 @@ export function HeroCardStack() {
               {t(`items.${index}.cta`)}
             </span>
           </div>
-        </div>
-
-        {/* ── Right: GIF centred ── */}
-        <div className="flex flex-row items-center self-stretch shrink-0 w-[72px] sm:w-[108px] justify-center translate-x-4">
-          <div className="relative size-[72px] sm:size-[92px] rounded-full overflow-hidden shrink-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/hero-cards/app-download.gif"
-              alt=""
-              aria-hidden
-              className="absolute object-cover w-full h-full"
-              draggable={false}
-            />
           </div>
         </div>
       </div>
     </Link>
+    </>
   )
 }

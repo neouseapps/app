@@ -65,19 +65,19 @@ export function AppDownloadCTA() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="flex flex-col gap-3 w-full"
             >
-              {/* 2-col grid: row 1 = App Store + Google Play, row 2 = QR (spans 2). Equal row heights via gridAutoRows. */}
+              {/* Mobile: 3 items in 1 row. Desktop: 2-col grid with QR spanning 2. */}
               <div className="grid grid-cols-2 gap-3 w-full" style={{ gridAutoRows: '1fr' }}>
                 <button className="flex items-center justify-center gap-3 bg-white/5 backdrop-blur-sm text-white px-4 py-4 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
                   <AppleIcon />
-                  <div className="text-lg font-bold leading-none">App Store</div>
+                  <div className="text-lg font-bold leading-none hidden sm:block">App Store</div>
                 </button>
                 <button className="flex items-center justify-center gap-3 bg-white/5 backdrop-blur-sm text-white px-4 py-4 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
                   <GooglePlayIcon />
-                  <div className="text-lg font-bold leading-none">Google Play</div>
+                  <div className="text-lg font-bold leading-none hidden sm:block">Google Play</div>
                 </button>
 
                 {/* TODO: replace QrCode placeholder with a real QR code image */}
-                <div className="col-span-2 flex flex-row items-center justify-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-2xl border border-white/10">
+                <div className="col-span-2 hidden lg:flex flex-row items-center justify-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-2xl border border-white/10">
                   <div className="shrink-0">
                     <QrCode className="w-10 h-10 text-white" />
                   </div>

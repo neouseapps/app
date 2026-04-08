@@ -22,7 +22,7 @@ export function LanguageSwitcher({ variant = 'dark', className, fullWidth }: { v
     <div className={`relative ${className ?? 'hidden lg:block'}`}>
       <button
         onClick={() => setOpen(!open)}
-        className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-colors text-sm font-medium ${fullWidth ? 'w-full justify-between' : ''} ${
+        className={`flex items-center gap-1.5 rounded-lg px-3 py-2 transition-colors text-sm font-medium ${fullWidth ? 'w-full justify-between' : ''} ${
           isLight
             ? 'border border-[var(--color-border-default)] hover:bg-[var(--color-bg-dim)] text-[var(--color-text-default)]'
             : 'border border-white/20 hover:bg-white/10 text-white'

@@ -31,7 +31,7 @@ const HeroSection = () => {
   }
 
   return (
-    <header className="relative h-[90vh] min-h-[700px] flex items-center justify-start overflow-hidden bg-bg-inverse">
+    <header className="relative h-[90vh] min-h-[700px] flex items-center justify-center overflow-hidden bg-bg-inverse">
       {/* Desktop hero */}
       <img
         src="/images/hero-home.png"
@@ -47,7 +47,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/40 to-navy/90"></div>
 
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-8 mt-16">
-        <div className="max-w-2xl text-center sm:text-left mx-auto sm:mx-0">
+        <div className="max-w-2xl text-center mx-auto">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-white/90 text-sm font-medium mb-6 bg-white/10 backdrop-blur-md border border-white/20">
           <span className="w-2 h-2 rounded-full bg-bg-warning-default animate-pulse"></span>
           {t('badge')}
@@ -66,7 +66,7 @@ const HeroSection = () => {
           ))}
         </h1>
         <p
-          className="font-normal mb-10 max-w-xl"
+          className="font-normal mb-10 max-w-xl mx-auto"
           style={{
             fontFamily: 'var(--typography-font-family-default, SVN-Selecta)',
             fontSize: 'var(--web_typo-body-extralarge-font-size, 18px)',
@@ -79,7 +79,7 @@ const HeroSection = () => {
         </p>
 
         {/* AI Trip Card Stack */}
-        <div className="mt-6 w-full">
+        <div className="mt-6 w-full flex justify-center">
           <HeroCardStack />
         </div>
 
@@ -392,7 +392,7 @@ const NewsSection = () => {
 export default function HomePageClient() {
   return (
     <div className="bg-bg-dim text-slate-800 font-default">
-      <Navbar />
+      <Navbar variant="light" />
       <HeroSection />
       <TestimonialsSection />
       {/* <DestinationsSection /> */}

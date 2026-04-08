@@ -75,7 +75,7 @@ export default function PhuQuocPageClient() {
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent opacity-80" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-transparent to-transparent" />
 
-        <Navbar />
+        <Navbar variant="light" />
 
         {/* Breadcrumb */}
         <nav aria-label="breadcrumb" className="relative z-10 mt-20 px-8">

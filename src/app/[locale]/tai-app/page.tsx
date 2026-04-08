@@ -23,7 +23,7 @@ export async function generateMetadata({
 export default function TaiAppPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[var(--color-bg-default)]">
-      <Navbar />
+      <Navbar variant="light" />
       <main>
         <AppHero />
         <AppFeatures />

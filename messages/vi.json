@@ -132,14 +132,10 @@
       "description": "Câu chuyện Visit Vietnam - Kết nối thế giới với vẻ đẹp đích thực của Việt Nam"
     },
     "Hero": {
-      "badge": "Câu chuyện Visit Vietnam",
-      "titleLine1": "Kết nối thế giới với",
-      "titleHighlight": "vẻ đẹp đích thực",
-      "titleLine2": "của Việt Nam",
-      "subtitle": "Nền tảng công nghệ du lịch thông minh, nơi mọi hành trình được cá nhân hóa, văn hóa địa phương được tôn vinh, và các đối tác cùng nhau kiến tạo hệ sinh thái bền vững.",
-      "partnersLabel": "Đơn vị bảo trợ & Đối tác chiến lược",
-      "partner1": "Bộ Văn hóa, Thể thao & Du lịch",
-      "partner2": "Tổng cục Du lịch Việt Nam"
+      "badge": "Giới thiệu Visit Vietnam",
+      "title": "Một nền tảng số, trọn hành trình Việt.",
+      "subtitle": "Một nền tảng du lịch thông minh, kết nối đối tác và kiến tạo hành trình liền mạch, nâng tầm vị thế du lịch Việt.",
+      "cta": "Khám phá ngay"
     },
     "Pillars": {
       "eyebrow": "Công nghệ cốt lõi",
@@ -610,12 +606,20 @@
       "description": "Nền tảng thông tin du lịch thời gian thực dành cho các cơ quan chính phủ, sở du lịch địa phương và cơ quan chức năng trên toàn Việt Nam."
     },
     "Hero": {
-      "badge": "Nền tảng dữ liệu du lịch chính phủ",
-      "title": "Dữ liệu du lịch thực.",
-      "titleLine2": "Quyết định thông minh hơn.",
-      "subtitle": "Hỗ trợ hoạch định chính sách và quản lý du lịch bằng dữ liệu thời gian thực, được xác minh từ nền tảng du lịch quốc gia Việt Nam.",
-      "ctaPrimary": "Yêu cầu demo",
-      "ctaSecondary": "Khám phá nền tảng"
+      "badge": "Nền tảng dữ liệu quốc gia",
+      "title": "Hạ tầng dữ liệu cho quản lý du lịch Việt Nam",
+      "subtitle": "Kết nối và đồng bộ dữ liệu du lịch trên phạm vi cả nước, phục vụ công tác quản lý và ra quyết định",
+      "ctaPrimary": "Trải nghiệm thử",
+      "ctaSecondary": "Khám phá nền tảng",
+      "navCta": "Trải nghiệm nền tảng"
+    },
+    "NationalSponsorship": {
+      "title": "Bảo trợ cấp quốc gia",
+      "cards": {
+        "0": { "label": "Cục Du lịch Quốc gia Việt Nam" },
+        "1": { "label": "Hiệp hội Dữ liệu Quốc gia" },
+        "2": { "label": "Trung tâm Dữ liệu Quốc gia" }
+      }
     },
     "Stats": {
       "0": { "label": "Tổng lượt khách", "trend": "+12,3%" },
@@ -624,73 +628,75 @@
       "3": { "label": "Điểm hài lòng", "trend": null }
     },
     "PainPoints": {
-      "eyebrow": "Thách thức hiện tại",
-      "title": "Quản lý du lịch phức tạp hơn mức cần thiết",
-      "subtitle": "Các cơ quan chính phủ đang đối mặt với khoảng trống dữ liệu cấu trúc làm chậm quá trình ra quyết định và phản ứng chính sách.",
+      "eyebrow": "Thách thức",
+      "title": "Rào cản đối với chuyển đổi số du lịch",
+      "subtitle": "Các điểm nghẽn về kết nối, tốc độ cập nhật và độ tin cậy đang hạn chế khả năng điều hành du lịch ở quy mô quốc gia",
       "items": {
         "0": {
-          "title": "Dữ liệu phân mảnh",
-          "desc": "Số liệu thống kê du lịch bị phân tán giữa hàng chục sở, ban, ngành mà không có cái nhìn tổng thể thống nhất."
+          "title": "Phân tán giữa nhiều hệ thống",
+          "desc": "Thông tin được quản lý rải rác giữa 34 tỉnh thành và các doanh nghiệp, chưa có nền tảng kết nối đồng bộ"
         },
         "1": {
-          "title": "Chu kỳ phản hồi chậm",
-          "desc": "Báo cáo quý và năm đến quá muộn để phản ứng kịp với xu hướng du khách thay đổi nhanh và các sự kiện bất ngờ."
+          "title": "Chậm so với biến động thực tế",
+          "desc": "Việc tổng hợp vẫn dựa trên báo cáo theo chu kỳ tháng hoặc quý, tạo ra độ trễ dữ liệu từ 4–12 tuần"
         },
         "2": {
-          "title": "Thiếu dữ liệu hành vi",
-          "desc": "Mô hình chi tiêu, sở thích di chuyển và động lực của du khách hầu như vẫn ẩn đối với các nhà hoạch định chính sách."
+          "title": "Thiếu cơ chế xác thực",
+          "desc": "Việc định danh và kiểm chứng doanh nghiệp, dịch vụ hiện chưa được triển khai dưới một hệ thống tập trung"
         }
       }
     },
     "DashboardFeatures": {
-      "eyebrow": "Các module nền tảng",
-      "title": "Một dashboard. Toàn bộ dữ liệu.",
-      "subtitle": "Bốn module tích hợp được thiết kế cho cơ quan quản lý du lịch, sở du lịch địa phương và nhóm hoạch định chính sách quốc gia.",
+      "eyebrow": "Visit Vietnam",
+      "title": "Giải pháp quản trị du lịch toàn diện",
+      "subtitle": "Theo dõi toàn cảnh, hiểu từng địa phương, chuẩn hóa từng ngành với hệ thống dashboard của Visit Vietnam",
+      "cta": "Trải nghiệm dashboard",
       "items": {
         "0": {
           "title": "Tổng quan thị trường",
-          "desc": "Theo dõi lượt khách, dòng tiền và phân tích thị trường nguồn theo thời gian thực ở cấp quốc gia và địa phương."
+          "desc": "Tích hợp các chỉ số về lượt khách, doanh thu, thị trường nguồn và xu hướng theo mùa trên một nền tảng thống nhất"
         },
         "1": {
-          "title": "Bản đồ nhiệt điểm đến",
-          "desc": "Trực quan hóa mật độ và hành trình di chuyển của du khách trên toàn vùng để xác định quá tải và điểm nóng mới nổi."
+          "title": "Bản đồ nhiệt",
+          "desc": "Trực quan hóa mật độ du khách, hành vi di chuyển và các điểm đến mới nổi trên phạm vi toàn quốc theo thời gian thực"
         },
         "2": {
           "title": "Phân tích chi tiêu",
-          "desc": "Phân tích chi tiêu theo từng danh mục — lưu trú, ẩm thực, vận chuyển, hoạt động — theo quốc tịch và mùa vụ."
+          "desc": "Tổng hợp và phân tích dữ liệu chi tiêu theo danh mục, các nhóm dịch vụ và quốc tịch của du khách"
         },
         "3": {
-          "title": "Dự báo & Cảnh báo",
-          "desc": "Dự báo nhu cầu bằng AI và cảnh báo tự động giúp cơ quan chuẩn bị cho các đợt tăng đột biến, thiếu hụt và sự kiện an toàn."
+          "title": "Dự báo & cảnh báo",
+          "desc": "Ứng dụng AI để phân tích và dự báo nhu cầu, công suất và các biến động của thị trường du lịch Việt Nam"
         }
       }
     },
     "ValueProps": {
-      "eyebrow": "Vì sao các cơ quan chọn chúng tôi",
-      "title": "Được xây dựng cho quy trình ra quyết định cấp chính phủ",
+      "eyebrow": "Giá trị",
+      "title": "Số hóa quản trị, nâng tầm du lịch Việt Nam",
+      "subtitle": "Kiến tạo tương lai du lịch quốc gia bằng sức mạnh dữ liệu thực chứng và kết nối xuyên suốt toàn ngành",
       "items": {
         "0": {
-          "title": "Chính sách dựa trên dữ liệu",
-          "desc": "Thay thế báo cáo cảm tính bằng các số liệu thời gian thực đã được xác minh, đủ sức chịu đựng sự giám sát công khai."
+          "title": "Ra quyết định chính xác",
+          "desc": "Có cơ sở dữ liệu thực tế để xây dựng chính sách, phân bổ ngân sách và điều chỉnh kế hoạch phát triển du lịch"
         },
         "1": {
-          "title": "Mục tiêu dựa trên bằng chứng",
-          "desc": "Xác định thị trường nguồn có giá trị cao và mô hình mùa vụ để phân bổ ngân sách xúc tiến một cách chính xác."
+          "title": "Tối ưu hóa nguồn lực xúc tiến",
+          "desc": "Xác định đúng thị trường, đúng điểm đến và đúng thời điểm triển khai, đảm bảo nguồn lực được sử dụng đúng trọng tâm"
         },
         "2": {
-          "title": "Báo cáo tự động",
-          "desc": "Xuất báo cáo tuân thủ và tóm tắt được định dạng theo yêu cầu — không cần biên soạn thủ công."
+          "title": "Giảm tải vận hành và báo cáo",
+          "desc": "Tự động hóa việc tổng hợp và theo dõi số liệu, giảm phụ thuộc vào thu thập thủ công và rút ngắn thời gian báo cáo"
         }
       }
     },
     "Contact": {
-      "eyebrow": "Đăng ký truy cập",
-      "title": "Yêu cầu demo nền tảng",
-      "subtitle": "Đặt lịch hướng dẫn với nhóm giải pháp chính phủ của chúng tôi. Demo miễn phí và được thiết kế theo phạm vi của cơ quan bạn.",
+      "eyebrow": "Liên hệ",
+      "title": "Đăng ký ngay để trải nghiệm nền tảng",
+      "subtitle": "Kết nối với Visit Vietnam để được tư vấn và hướng dẫn triển khai hệ thống phù hợp với phạm vi quản lý",
       "infoTitle": "Phòng quan hệ chính phủ",
       "email": "gov@visitvietnam.asia",
       "phone": "+84 (28) 1234 5678",
-      "address": "Quận 1, Thành phố Hồ Chí Minh, Việt Nam",
+      "address": "Phường Bạch Đằng, Quận Hai Bà Trưng, Hà Nội",
       "hours": "T2–T6 8:00–17:00 · T7 8:00–12:00",
       "fields": {
         "organization": "Tên tổ chức / cơ quan",

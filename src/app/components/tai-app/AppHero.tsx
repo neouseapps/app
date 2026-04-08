@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { QrCode, MessageSquare, MapPin } from 'lucide-react'
+import { QrCode } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 function AppleIcon() {
@@ -73,101 +73,22 @@ export function AppHero() {
             </div>
           </motion.div>
 
-          {/* Right — phone mockups */}
+          {/* Right — app mockup image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mx-auto w-full max-w-md lg:max-w-none"
+            className="relative mx-auto w-full max-w-md lg:max-w-none flex justify-center"
           >
-            {/* Background glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[var(--color-bg-success-subtle)] rounded-full blur-3xl -z-10" />
-
-            <div className="relative flex justify-center items-center">
-              {/* Main phone mockup */}
-              {/* TODO: replace with production app screenshots */}
-              <div className="relative z-20 w-64 h-[520px] bg-[var(--color-bg-inverse)] rounded-[2.5rem] border-[8px] border-[var(--color-bg-inverse)] shadow-2xl overflow-hidden flex flex-col">
-                <div className="absolute top-0 inset-x-0 flex justify-center z-30">
-                  <div className="w-32 h-6 bg-[var(--color-bg-inverse)] rounded-b-3xl" />
-                </div>
-                <Image
-                  src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&w=800&auto=format&fit=crop"
-                  alt="Vịnh Hạ Long — màn hình khám phá điểm đến"
-                  width={256}
-                  height={192}
-                  sizes="256px"
-                  className="w-full h-48 object-cover"
-                  priority
-                />
-                <div className="flex-1 bg-[var(--color-bg-default)] p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-[var(--color-bg-success-subtle)] flex items-center justify-center shrink-0">
-                      <MessageSquare className="w-4 h-4 text-[var(--color-text-success-default)]" />
-                    </div>
-                    <div className="bg-[var(--color-bg-dim)] rounded-2xl rounded-tl-none p-3 text-sm text-[var(--color-text-default)]">
-                      {t('aiMessage')}
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="bg-[var(--color-bg-default)] border border-[var(--color-bg-dim)] shadow-sm rounded-xl p-3 flex gap-3 items-center">
-                      <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
-                        <Image
-                          src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?q=80&w=200&auto=format&fit=crop"
-                          alt="Phố cổ Hội An"
-                          fill
-                          sizes="48px"
-                          className="object-cover"
-                        />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-sm text-[var(--color-text-default)]">Phố cổ Hội An</h4>
-                        <p className="text-xs text-[var(--color-text-dim)]">Ngày 1 • 14:00</p>
-                      </div>
-                    </div>
-                    <div className="bg-[var(--color-bg-default)] border border-[var(--color-bg-dim)] shadow-sm rounded-xl p-3 flex gap-3 items-center">
-                      <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
-                        <Image
-                          src="https://images.unsplash.com/photo-1531737212413-667205e1cda7?q=80&w=200&auto=format&fit=crop"
-                          alt="Bà Nà Hills"
-                          fill
-                          sizes="48px"
-                          className="object-cover"
-                        />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-sm text-[var(--color-text-default)]">Bà Nà Hills</h4>
-                        <p className="text-xs text-[var(--color-text-dim)]">Ngày 2 • 09:00</p>
-                      </div>
-                    </div>
-                  </div>
-                  <button className="w-full mt-4 bg-[var(--color-bg-success-default)] text-[var(--color-text-bright)] rounded-lg py-2 text-sm font-medium">
-                    {t('viewItinerary')}
-                  </button>
-                </div>
-              </div>
-
-              {/* Secondary phone (background depth) */}
-              {/* TODO: replace with production app screenshots */}
-              <div className="absolute z-10 w-56 h-[460px] bg-[var(--color-bg-inverse-hover)] rounded-[2rem] border-[6px] border-[var(--color-bg-inverse-hover)] shadow-xl overflow-hidden -right-4 lg:-right-12 top-10 rotate-6 opacity-80 hidden sm:block">
-                <Image
-                  src="https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=600&auto=format&fit=crop"
-                  alt="Bản đồ Việt Nam — màn hình điều hướng"
-                  fill
-                  sizes="224px"
-                  className="object-cover opacity-50"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-inverse)]/80 to-transparent flex flex-col justify-end p-4">
-                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20">
-                    <div className="flex items-center gap-2 text-[var(--color-text-bright)] mb-1">
-                      <MapPin className="w-4 h-4 text-[var(--color-text-success-default)]" />
-                      <span className="font-medium text-sm">{t('navigatingTo')}</span>
-                    </div>
-                    <div className="text-[var(--color-text-bright)] font-semibold">Chợ Bến Thành</div>
-                    <div className="text-[var(--color-text-success-default)] text-xs mt-1">{t('walkingDistance')}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Image
+              src="/images/hero-app-mockup.png"
+              alt="Visit Vietnam app — màn hình khám phá điểm đến"
+              width={560}
+              height={600}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="w-full h-auto object-contain drop-shadow-2xl"
+              priority
+            />
           </motion.div>
         </div>
       </div>
