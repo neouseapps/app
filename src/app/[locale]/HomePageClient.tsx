@@ -31,55 +31,41 @@ const HeroSection = () => {
   }
 
   return (
-    <header className="relative h-[90vh] min-h-[700px] flex items-center justify-center overflow-hidden bg-bg-inverse">
-      {/* Desktop hero */}
+    <header className="relative h-[90vh] min-h-[700px] flex items-start md:items-center justify-center overflow-hidden bg-bg-inverse">
       <img
         src="/images/hero-home.png"
         alt="Visit Vietnam Award"
-        className="absolute inset-0 w-full h-full object-cover object-center hidden md:block"
-      />
-      {/* Mobile hero */}
-      <img
-        src="/images/hero-home-mobile.png"
-        alt="Visit Vietnam Award"
-        className="absolute inset-0 w-full h-full object-cover object-center md:hidden"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/40 to-navy/90"></div>
-
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-8 mt-16">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-8 pt-[120px] md:pt-0">
         <div className="max-w-2xl text-center mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-white/90 text-sm font-medium mb-6 bg-white/10 backdrop-blur-md border border-white/20">
-          <span className="w-2 h-2 rounded-full bg-bg-warning-default animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium mb-6 border border-white/20" style={{ background: '#ffffff', color: 'var(--color-brand-primary, #ca842f)' }}>
           {t('badge')}
         </div>
         <h1
-          className="italic font-medium text-white mb-6"
-          style={{
-            fontFamily: 'var(--typography-font-family-display, "SVN-Ryhmes Display")',
-            fontSize: 'var(--web_typo-display-extralarge-font-size, 48px)',
-            lineHeight: 'var(--web_typo-display-extralarge-line-height, 54px)',
-            letterSpacing: 'var(--web_typo-display-extralarge-letter-spacing, -0.48px)',
-          }}
+          className="font-display font-medium italic text-white leading-[1.2] mb-6 text-[40px] md:text-[80px]"
+          style={{ textShadow: '3.421px 17px 24px rgba(0, 0, 0, 0.30), 0 2px 8px rgba(0, 0, 0, 0.15)' }}
         >
           {t('title').split('\n').map((line, i) => (
             <React.Fragment key={i}>{i > 0 && <br />}{line}</React.Fragment>
           ))}
         </h1>
         <p
-          className="font-normal mb-10 max-w-xl mx-auto"
+          className="font-semibold mb-6 max-w-sm mx-auto"
           style={{
             fontFamily: 'var(--typography-font-family-default, SVN-Selecta)',
-            fontSize: 'var(--web_typo-body-extralarge-font-size, 18px)',
-            lineHeight: 'var(--web_typo-body-extralarge-line-height, 28px)',
+            fontSize: 22,
+            lineHeight: '32px',
             letterSpacing: '0',
             color: 'var(--color-text-neutral-inverse)',
+            textShadow: '0 4px 24px rgba(150, 80, 10, 0.85), 0 2px 8px rgba(180, 100, 20, 0.60)',
           }}
         >
           {t('subtitle')}
         </p>
-
         {/* AI Trip Card Stack */}
-        <div className="mt-6 w-full flex justify-center">
+        <div className="mt-[120px] w-full flex justify-center">
           <HeroCardStack />
         </div>
 
@@ -186,7 +172,7 @@ const FeaturesSection = () => {
       ),
     },
     {
-      href: '/for-governance',
+      href: '/tai-app',
       bg: 'bg-green-50',
       text: 'text-green-600',
       border: 'border-green-100',

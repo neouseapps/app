@@ -3,8 +3,10 @@ import type { Metadata } from 'next'
 import { Navbar } from '../../components/Navbar'
 import { Footer } from '../../components/Footer'
 import { AppHero } from '../../components/tai-app/AppHero'
+import { AppPainPoints } from '../../components/tai-app/AppPainPoints'
 import { AppFeatures } from '../../components/tai-app/AppFeatures'
 import { AppTestimonials } from '../../components/tai-app/AppTestimonials'
+import { AppFaq } from '../../components/tai-app/AppFaq'
 import { AppDownloadCTA } from '../../components/tai-app/AppDownloadCTA'
 
 export async function generateMetadata({
@@ -26,8 +28,10 @@ export default function TaiAppPage() {
       <Navbar variant="light" />
       <main>
         <AppHero />
+        <AppPainPoints />
         <AppFeatures />
         <AppTestimonials />
+        <AppFaq />
         <AppDownloadCTA />
       </main>
       <Footer />

@@ -41,7 +41,7 @@ export function TestimonialCarousel() {
   useEffect(() => {
     const measure = () => {
       if (!containerRef.current) return
-      const w = containerRef.current.offsetWidth
+      const w = containerRef.current.offsetWidth - 32 // subtract px-4 padding (16px × 2)
       const count = w >= 768 ? 3 : 1
       setVisibleCount(count)
       setCardWidth((w - GAP * (count - 1)) / count)
@@ -77,7 +77,7 @@ export function TestimonialCarousel() {
   }
 
   return (
-    <div className="overflow-hidden -mx-4">
+    <div className="[overflow-x:clip] -mx-4">
     <div
       ref={containerRef}
       className="px-4 py-4 -my-4"

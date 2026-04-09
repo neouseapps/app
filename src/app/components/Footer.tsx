@@ -21,9 +21,9 @@ export const Footer = () => {
     {
       title: t('columns.support.title'),
       links: [
-        { label: 'support@visitvietnam.asia', href: 'mailto:support@visitvietnam.asia' },
         { label: 'partner@visitvietnam.asia', href: 'mailto:partner@visitvietnam.asia' },
-        { label: 'security@visitvietnam.asia', href: 'mailto:security@visitvietnam.asia' },
+        { label: 'support01@visitvietnam.asia', href: 'mailto:support01@visitvietnam.asia' },
+        { label: 'info@visitvietnam.asia', href: 'mailto:info@visitvietnam.asia' },
         { label: t('columns.support.hotline'), href: '#' },
       ],
     },

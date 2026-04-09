@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Navbar } from '../../components/Navbar'
 import { Footer } from '../../components/Footer'
-import { IndustryCarousel } from '../../components/sections/IndustryCarousel'
+import { IndustryCarouselV2 } from '../../components/sections/IndustryCarouselV2'
 import { PartnershipTiers } from '../../components/sections/PartnershipTiers'
 import { RegistrationForm } from '../../components/sections/RegistrationForm'
 import { PartnerProcess } from '../../components/sections/PartnerProcess'
@@ -134,7 +134,7 @@ function StatsSection() {
   return (
     <section className="py-16 text-white relative" style={{ background: 'linear-gradient(180deg, var(--color-alpha-black-20) 0%, var(--color-alpha-black-80) 100%), var(--color-bg-brand-primary-dim)' }}>
       <div className="max-w-[1440px] mx-auto px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-x divide-white/20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <StatCounter target={100} suffix="+" label={t('Stats.0.label')} />
           <StatCounter target={120} suffix="+" label={t('Stats.1.label')} />
           <StatCounter target={50000} suffix="+" label={t('Stats.2.label')} />
@@ -166,9 +166,9 @@ function FeaturesSection() {
           <h2 className="text-sm font-bold text-[var(--color-brand-primary)] tracking-wider uppercase mb-2">
             {t('eyebrow')}
           </h2>
-          <h3 className="text-3xl md:text-4xl font-display font-medium text-[var(--color-text-default)] leading-[1.3] mb-4">
+          <h2 className="text-3xl font-display font-medium text-[var(--color-text-default)] leading-[1.3] mb-4">
             {t('title')}
-          </h3>
+          </h2>
           <p className="text-[var(--color-text-dim)] text-lg leading-relaxed">
             {t('subtitle')}
           </p>
@@ -221,21 +221,11 @@ function FaqSection() {
           {/* Contact info block */}
           <div className="bg-[var(--color-bg-dim)] rounded-2xl p-6 mb-10 text-center">
             <p className="text-lg font-bold text-[var(--color-text-default)] mb-4">{t('contactLabel')}</p>
-            <div className="grid sm:grid-cols-2 gap-3 justify-items-start sm:w-fit mx-auto">
-              <a href="mailto:support@visitvietnam.asia" className="flex items-center gap-2 text-sm text-[var(--color-text-dim)] hover:text-[var(--color-text-default)] transition-colors">
-                <span className="w-2 h-2 rounded-full bg-[var(--color-brand-primary)] shrink-0" />
-                support@visitvietnam.asia
-              </a>
-              <a href="mailto:partner@visitvietnam.asia" className="flex items-center gap-2 text-sm text-[var(--color-text-dim)] hover:text-[var(--color-text-default)] transition-colors">
-                <span className="w-2 h-2 rounded-full bg-[var(--color-brand-primary)] shrink-0" />
+            <div className="flex flex-col gap-2 items-center">
+              <a href="mailto:partner@visitvietnam.asia" className="text-sm text-[var(--color-text-dim)] hover:text-[var(--color-text-default)] transition-colors">
                 partner@visitvietnam.asia
               </a>
-              <a href="mailto:security@visitvietnam.asia" className="flex items-center gap-2 text-sm text-[var(--color-text-dim)] hover:text-[var(--color-text-default)] transition-colors">
-                <span className="w-2 h-2 rounded-full bg-[var(--color-brand-primary)] shrink-0" />
-                security@visitvietnam.asia
-              </a>
-              <div className="flex items-center gap-2 text-sm text-[var(--color-text-dim)]">
-                <span className="w-2 h-2 rounded-full bg-[var(--color-brand-primary)] shrink-0" />
+              <div className="text-sm text-[var(--color-text-dim)]">
                 {t('hotline')}
               </div>
             </div>
@@ -292,7 +282,7 @@ export default function ForBusinessPageClient() {
         <StatsSection />
         <PartnerLogosSection />
         <FeaturesSection />
-        <IndustryCarousel onSectorSelect={setPresetSector} />
+        <IndustryCarouselV2 onSectorSelect={setPresetSector} />
         <PartnershipTiers />
         <PartnerProcess />
         <RegistrationForm presetSector={presetSector} />

@@ -17,9 +17,9 @@ const ArrowRight = () => (
 function PhoneChatMockup() {
   return (
     <img
-      src="/images/ai-section/phone-mockup-app.jpg"
+      src="/images/app-feature-01.png"
       alt="Visit Vietnam app"
-      className="w-[300px] h-auto rounded-[40px] shadow-2xl"
+      className="w-[600px] h-[600px] object-cover rounded-[40px]"
       draggable={false}
     />
   )

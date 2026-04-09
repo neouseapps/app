@@ -240,11 +240,15 @@ h2, h3, h4, h5 {
 
   /* Dot pattern utilities */
   .bg-dot {
-    background-image: radial-gradient(var(--color-alpha-black-20) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(0,0,0,0.07) 1px, transparent 1px);
     background-size: 20px 20px;
   }
   .bg-dot-white {
     background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  .bg-dot-brand {
+    background-image: radial-gradient(circle at 2px 2px, var(--color-brand-primary) 1px, transparent 0);
     background-size: 32px 32px;
   }
 

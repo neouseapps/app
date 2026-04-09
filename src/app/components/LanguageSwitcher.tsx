@@ -24,7 +24,7 @@ export function LanguageSwitcher({ variant = 'dark', className, fullWidth }: { v
         onClick={() => setOpen(!open)}
         className={`flex items-center gap-1.5 rounded-lg px-3 py-2 transition-colors text-sm font-medium ${fullWidth ? 'w-full justify-between' : ''} ${
           isLight
-            ? 'border border-[var(--color-border-default)] hover:bg-[var(--color-bg-dim)] text-[var(--color-text-default)]'
+            ? 'hover:bg-[var(--color-bg-dim)] text-[var(--color-text-default)]'
             : 'border border-white/20 hover:bg-white/10 text-white'
         }`}
       >
@@ -37,7 +37,10 @@ export function LanguageSwitcher({ variant = 'dark', className, fullWidth }: { v
         </svg>
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-2 bg-white rounded-xl shadow-xl py-1 min-w-[160px] z-10">
+        <div
+          className="absolute right-0 bg-white rounded-xl shadow-xl py-1 min-w-[160px] z-10"
+          style={fullWidth ? { bottom: 'calc(100% + 8px)', left: 0 } : { top: 'calc(100% + 8px)' }}
+        >
           <button
             onClick={() => switchTo('vi')}
             className={`w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium ${locale === 'vi' ? 'text-[var(--color-brand-primary)]' : ''}`}

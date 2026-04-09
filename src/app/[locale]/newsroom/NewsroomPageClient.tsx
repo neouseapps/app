@@ -77,13 +77,7 @@ export default function NewsroomPageClient() {
         <header className="pt-36 pb-24 px-8 text-center">
           <div className="max-w-4xl mx-auto">
             <h1
-              className="italic font-medium text-bg-inverse mb-6"
-              style={{
-                fontFamily: 'var(--typography-font-family-display, "SVN-Ryhmes Display")',
-                fontSize: 'var(--web_typo-display-extralarge-font-size, 48px)',
-                lineHeight: 'var(--web_typo-display-extralarge-line-height, 54px)',
-                letterSpacing: 'var(--web_typo-display-extralarge-letter-spacing, -0.48px)',
-              }}
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-bg-inverse leading-[1.2] mb-6"
             >
               {tHero('title')}
             </h1>

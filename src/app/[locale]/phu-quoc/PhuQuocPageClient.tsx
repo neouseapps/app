@@ -91,8 +91,7 @@ export default function PhuQuocPageClient() {
         {/* Centred title */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4">
           <h1
-            className="text-7xl md:text-9xl text-white mb-6 tracking-tighter text-glow"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 500 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-white mb-6 text-glow"
           >
             Phú Quốc
           </h1>

@@ -34,7 +34,7 @@ export const Navbar = ({ variant = 'dark', cta }: { variant?: 'dark' | 'light'; 
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex justify-between items-center h-[60px]">
             <Link href="/">
               <VsvnLogo variant="color-light" className="w-32" />
             </Link>
@@ -62,7 +62,7 @@ export const Navbar = ({ variant = 'dark', cta }: { variant?: 'dark' | 'light'; 
               {/* Hamburger */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full bg-[var(--color-bg-dim)] hover:bg-[var(--color-border-default)] transition-colors gap-1.5"
+                className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-[var(--color-bg-dim)] transition-colors gap-1.5"
                 aria-label="Menu"
               >
                 <span className={`block w-5 h-0.5 bg-[var(--color-text-default)] transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
@@ -75,50 +75,36 @@ export const Navbar = ({ variant = 'dark', cta }: { variant?: 'dark' | 'light'; 
         </div>
       </nav>
 
-      {/* Mobile menu — full-screen overlay */}
-      {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-[60] bg-white flex flex-col overflow-y-auto">
-          <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border-default)]">
-            <Link href="/" onClick={() => setMobileOpen(false)}>
-              <VsvnLogo variant="color-light" className="w-32" />
-            </Link>
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-bg-dim)] hover:bg-[var(--color-border-default)] transition-colors"
-              aria-label={t('closeMenu')}
-            >
-              <svg className="w-5 h-5 text-[var(--color-text-default)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <div className="p-6 flex flex-col gap-1 flex-1">
-            <Link href="/" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('home')}</Link>
-            <Link href="/for-business" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('business')}</Link>
-            <Link href="/for-governance" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('governance')}</Link>
-            <Link href="/newsroom" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('newsroom')}</Link>
-            <Link href="/about" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('about')}</Link>
-            <div className="mt-2 pt-3 border-t border-[var(--color-border-default)] flex flex-col gap-3">
-              <LanguageSwitcher variant="light" className="" fullWidth />
-              {cta ? (
-                <Button variant="primary" size="md" className="w-full" onClick={() => { cta.onClick(); setMobileOpen(false) }}>
-                  {cta.label}
-                </Button>
-              ) : (
-                <Button asChild variant="primary" size="md" className="w-full" onClick={() => setMobileOpen(false)}>
-                  <Link href="/tai-app">{t('downloadApp')}</Link>
-                </Button>
-              )}
-            </div>
+      {/* Mobile menu — slide-down overlay */}
+      <div className={`lg:hidden fixed top-[60px] inset-x-0 bottom-0 z-[60] bg-white flex flex-col overflow-y-auto transition-all duration-300 ease-out ${
+        mobileOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-3 pointer-events-none'
+      }`}>
+        <div className="p-6 flex flex-col gap-1 flex-1">
+          <Link href="/" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('home')}</Link>
+          <Link href="/for-business" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('business')}</Link>
+          <Link href="/for-governance" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('governance')}</Link>
+          <Link href="/newsroom" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('newsroom')}</Link>
+          <Link href="/about" className="px-4 py-3 rounded-xl text-[var(--color-text-default)] hover:bg-[var(--color-bg-dim)] transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('about')}</Link>
+          <div className="mt-auto pt-3 flex flex-col gap-3">
+            <LanguageSwitcher variant="light" className="" fullWidth />
+            {cta ? (
+              <Button variant="primary" size="md" className="w-full" onClick={() => { cta.onClick(); setMobileOpen(false) }}>
+                {cta.label}
+              </Button>
+            ) : (
+              <Button asChild variant="primary" size="md" className="w-full" onClick={() => setMobileOpen(false)}>
+                <Link href="/tai-app">{t('downloadApp')}</Link>
+              </Button>
+            )}
           </div>
         </div>
-      )}
+      </div>
       </>
     )
   }
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 w-full h-[72px] transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 w-full h-[60px] transition-all duration-300 ${
       scrolled
         ? 'bg-[var(--color-bg-inverse)] shadow-md'
         : '[background:var(--Navigation-VSVN-Background)]'
@@ -146,7 +132,7 @@ export const Navbar = ({ variant = 'dark', cta }: { variant?: 'dark' | 'light'; 
             {/* Hamburger (mobile & tablet) */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors gap-1.5"
+              className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-white/10 transition-colors gap-1.5"
               aria-label="Menu"
             >
               <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
@@ -156,38 +142,24 @@ export const Navbar = ({ variant = 'dark', cta }: { variant?: 'dark' | 'light'; 
           </div>
         </div>
 
-        {/* Mobile menu */}
-        {mobileOpen && (
-          <div className="lg:hidden fixed inset-0 z-[60] bg-[var(--color-bg-inverse)] flex flex-col overflow-y-auto">
-            <div className="flex items-center justify-between px-6 py-5">
-              <Link href="/" onClick={() => setMobileOpen(false)}>
-                <VsvnLogo variant="color-dark" className="w-32" />
-              </Link>
-              <button
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                aria-label={t('closeMenu')}
-              >
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="p-6 flex flex-col gap-1 flex-1">
-              <Link href="/" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('home')}</Link>
-              <Link href="/for-business" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('business')}</Link>
-              <Link href="/for-governance" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('governance')}</Link>
-              <Link href="/newsroom" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('newsroom')}</Link>
-              <Link href="/about" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('about')}</Link>
-              <div className="mt-2 pt-3 border-t border-white/10 flex flex-col gap-3">
-                <LanguageSwitcher variant="dark" className="" fullWidth />
-                <Button asChild variant="tertiary" size="md" className="w-full" onClick={() => setMobileOpen(false)}>
-                  <Link href="/tai-app">{t('downloadAppDark')}</Link>
-                </Button>
-              </div>
+        {/* Mobile menu — slide-down overlay */}
+        <div className={`lg:hidden fixed top-[60px] inset-x-0 bottom-0 z-[60] bg-[var(--color-bg-inverse)] flex flex-col overflow-y-auto transition-all duration-300 ease-out ${
+          mobileOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-3 pointer-events-none'
+        }`}>
+          <div className="p-6 flex flex-col gap-1 flex-1">
+            <Link href="/" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('home')}</Link>
+            <Link href="/for-business" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('business')}</Link>
+            <Link href="/for-governance" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('governance')}</Link>
+            <Link href="/newsroom" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('newsroom')}</Link>
+            <Link href="/about" className="px-4 py-3 rounded-xl hover:bg-white/10 transition-colors font-medium" onClick={() => setMobileOpen(false)}>{t('about')}</Link>
+            <div className="mt-2 pt-3 flex flex-col gap-3">
+              <LanguageSwitcher variant="dark" className="" fullWidth />
+              <Button asChild variant="tertiary" size="md" className="w-full" onClick={() => setMobileOpen(false)}>
+                <Link href="/tai-app">{t('downloadAppDark')}</Link>
+              </Button>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   )

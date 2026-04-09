@@ -46,9 +46,9 @@ export function PartnerProcess() {
           <p className="text-sm font-bold text-[var(--color-brand-primary)] tracking-wider uppercase mb-2">
             {t('eyebrow')}
           </p>
-          <h3 className="text-3xl md:text-4xl font-display font-medium text-[var(--color-text-default)] leading-[1.3] mb-4">
+          <h2 className="text-3xl font-display font-medium text-[var(--color-text-default)] leading-[1.3] mb-4">
             {t('title')}
-          </h3>
+          </h2>
           <p className="text-[var(--color-text-dim)] text-lg leading-relaxed">
             {t('subtitle')}
           </p>

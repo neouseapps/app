@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Navbar } from '../../components/Navbar'
@@ -21,7 +21,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  CheckCircle2,
 } from 'lucide-react'
 
 // ---------------------------------------------------------------------------
@@ -42,6 +41,11 @@ function smoothScrollTo(id: string) {
 // ---------------------------------------------------------------------------
 function HeroSection() {
   const t = useTranslations('ForGovernancePage.Hero')
+  const tSponsor = useTranslations('ForGovernancePage.NationalSponsorship')
+  const sponsorCards = [
+    { src: '/images/governance/timeless-charm.png', label: tSponsor('cards.0.label') },
+    { src: '/images/governance/hiep-hoi.png', label: tSponsor('cards.1.label') },
+  ]
   return (
     <section className="relative h-[90vh] min-h-[700px] flex items-center overflow-hidden bg-[var(--color-bg-inverse)]">
       {/* Background image */}
@@ -54,6 +58,7 @@ function HeroSection() {
         unoptimized
       />
       {/* Overlay */}
+      <div className="absolute inset-0 bg-black/20" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40" />
 
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-8 mt-16">
@@ -68,16 +73,56 @@ function HeroSection() {
           <p className="text-lg text-white/80 mb-8 leading-relaxed max-w-xl mx-auto">
             {t('subtitle')}
           </p>
+
+          {/* Sponsorship block */}
+          <div className="mb-8 backdrop-blur-sm rounded-[32px] px-10 py-6 inline-block" style={{ backgroundColor: 'color-mix(in srgb, var(--color-brand-primary) 45%, transparent)' }}>
+            <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/20 bg-white/10 mb-8">
+              <span className="text-xs font-bold tracking-widest uppercase text-white/70">{tSponsor('title')}</span>
+            </div>
+            <div className="flex items-center justify-center gap-6">
+              {sponsorCards.map(({ src, label }) => (
+                <div key={label} className="flex flex-col items-center gap-2">
+                  <div className="relative w-16 h-16">
+                    <Image src={src} alt={label} fill className="object-contain" unoptimized />
+                  </div>
+                  <span className="text-lg text-white/80 leading-relaxed text-center max-w-[140px]">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="flex flex-col gap-4 items-center w-64 mx-auto">
             <Button variant="ghost" size="lg" className="w-full text-white border-white/30 hover:bg-white/10" onClick={() => smoothScrollTo('features')}>
               {t('ctaSecondary')}
             </Button>
-            <Button variant="brand" size="lg" className="w-full" onClick={() => smoothScrollTo('contact')}>
-              {t('ctaPrimary')}
-            </Button>
           </div>
         </div>
       </div>
+    </section>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Gradient Banner Section (below Hero)
+// ---------------------------------------------------------------------------
+function GradientBannerSection() {
+  const t = useTranslations('ForGovernancePage.GradientBanner')
+  return (
+    <section
+      className="h-[480px] relative overflow-hidden"
+      style={{
+        background:
+          'radial-gradient(ellipse at 50% 10%, rgba(180,20,35,0.85) 0%, rgba(100,5,15,0.95) 45%, #0d0005 100%)',
+      }}
+    >
+      <h2
+        className="absolute left-0 right-0 text-center text-white font-display font-medium text-3xl md:text-4xl px-8"
+        style={{ top: '60px' }}
+      >
+        {t('title')}
+      </h2>
     </section>
   )
 }
@@ -112,12 +157,9 @@ function PainPointsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-[48px] bg-white/80 backdrop-blur-sm rounded-[20px] p-8">
           {items.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="bg-white p-4 rounded-[16px] shadow-md max-w-[320px] mx-auto w-full"
-            >
+            <div key={title}>
               <div className="w-10 h-10 flex items-center justify-center text-[var(--color-text-dim)] mb-3">
                 <Icon className="w-10 h-10" />
               </div>
@@ -150,38 +192,44 @@ function DashboardFeaturesSection() {
   return (
     <section id="features" className="py-24 bg-[var(--color-bg-default)]">
       <div className="max-w-[1440px] mx-auto px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: text content */}
-          <div className="flex flex-col">
+        {/* Row 1: headline left, subtitle + CTA right */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-12">
+          <div>
             <h2 className="text-sm font-bold text-[var(--color-brand-primary)] tracking-wider uppercase mb-4">
               {t('eyebrow')}
             </h2>
-            <h3 className="text-3xl md:text-4xl font-display font-medium text-[var(--color-text-default)] leading-[1.3] mb-4">
+            <h3 className="text-3xl md:text-4xl font-display font-medium text-[var(--color-text-default)] leading-[1.3]">
               {t('title')}
             </h3>
-            <p className="text-[var(--color-text-dim)] text-lg leading-relaxed mb-8">
+          </div>
+          <div>
+            <p className="text-[var(--color-text-dim)] text-lg leading-relaxed">
               {t('subtitle')}
             </p>
-            <Button variant="brand" size="lg" className="w-fit" onClick={() => smoothScrollTo('contact')}>
-              {t('cta')}
-            </Button>
           </div>
+        </div>
 
-          {/* Right: 2x2 card grid */}
-          <div className="grid grid-cols-2 gap-6">
-            {features.map(({ icon: Icon, title, desc }) => (
-              <div
-                key={title}
-                className="bg-white p-4 rounded-[16px] shadow-md text-center"
-              >
-                <div className="w-10 h-10 flex items-center justify-center text-[var(--color-brand-primary)] mb-3 mx-auto">
-                  <Icon className="w-10 h-10" />
-                </div>
-                <h4 className="text-base font-default font-bold text-[var(--color-text-default)] mb-2">{title}</h4>
-                <p className="text-[var(--color-text-dim)] leading-relaxed text-sm">{desc}</p>
+        {/* Row 2: 4 cards horizontal */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {features.map(({ icon: Icon, title, desc }) => (
+            <div
+              key={title}
+              className="bg-[var(--color-bg-dim)] p-5 rounded-[16px]"
+            >
+              <div className="w-10 h-10 flex items-center justify-center text-[var(--color-brand-primary)] mb-4 bg-white rounded-full">
+                <Icon className="w-5 h-5" />
               </div>
-            ))}
-          </div>
+              <h4 className="text-base font-default font-bold text-[var(--color-text-default)] mb-2">{title}</h4>
+              <p className="text-[var(--color-text-dim)] leading-relaxed text-sm">{desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA centered below cards */}
+        <div className="flex justify-center">
+          <Button variant="ghost" size="lg" className="w-fit" onClick={() => smoothScrollTo('contact')}>
+            {t('cta')}
+          </Button>
         </div>
       </div>
     </section>
@@ -243,7 +291,7 @@ function ValuePropsSection() {
   }))
 
   return (
-    <section className="py-16 bg-[var(--color-bg-inverse)] text-white">
+    <section className="py-16 text-white" style={{ background: 'linear-gradient(180deg, var(--color-alpha-black-20) 0%, var(--color-alpha-black-80) 100%), var(--color-bg-brand-primary-dim)' }}>
       <div className="max-w-[1440px] mx-auto px-8">
         <div className="text-center max-w-[704px] mx-auto mb-12">
           <h2 className="text-sm font-bold text-[var(--color-brand-primary)] tracking-wider uppercase mb-2">
@@ -256,7 +304,7 @@ function ValuePropsSection() {
             {t('subtitle')}
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/20">
+        <div className="grid md:grid-cols-3 gap-0">
           {items.map(({ icon: Icon, title, desc }) => (
             <div key={title} className="p-8 text-center">
               <div className="flex justify-center mb-4">
@@ -275,33 +323,8 @@ function ValuePropsSection() {
 // ---------------------------------------------------------------------------
 // Contact Form Section
 // ---------------------------------------------------------------------------
-const inputClass =
-  'w-full rounded-xl border border-[var(--color-border-default)] bg-white px-4 py-3 text-sm text-[var(--color-text-default)] placeholder:text-[var(--color-text-dim-variant)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] transition'
-
 function ContactFormSection() {
   const t = useTranslations('ForGovernancePage.Contact')
-  const [form, setForm] = useState({ organization: '', position: '', name: '', email: '', phone: '' })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
-  const isValid = Object.values(form).every((v) => v.trim() !== '')
-
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-  }, [])
-
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault()
-      if (!isValid) return
-      setIsSubmitting(true)
-      await new Promise((res) => setTimeout(res, 1200))
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-    },
-    [isValid],
-  )
 
   return (
     <section id="contact" className="py-24 bg-[var(--color-bg-dim)]">
@@ -319,109 +342,6 @@ function ContactFormSection() {
         </div>
 
         <div className="max-w-[620px] mx-auto flex flex-col gap-12">
-          {/* Form */}
-          <div className="bg-white rounded-[24px] p-8 shadow-md">
-            {isSubmitted ? (
-              <div className="flex flex-col items-center justify-center h-full text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-6">
-                  <CheckCircle2 className="w-8 h-8 text-green-600" />
-                </div>
-                <h4 className="text-xl font-bold text-[var(--color-text-default)] mb-2">{t('successTitle')}</h4>
-                <p className="text-[var(--color-text-dim)] text-sm leading-relaxed max-w-xs">{t('successDesc')}</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-[var(--color-text-default)] mb-1.5">
-                    {t('fields.organization')}
-                  </label>
-                  <input
-                    name="organization"
-                    value={form.organization}
-                    onChange={handleChange}
-                    placeholder={t('placeholders.organization')}
-                    className={inputClass}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-[var(--color-text-default)] mb-1.5">
-                    {t('fields.position')}
-                  </label>
-                  <input
-                    name="position"
-                    value={form.position}
-                    onChange={handleChange}
-                    placeholder={t('placeholders.position')}
-                    className={inputClass}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-[var(--color-text-default)] mb-1.5">
-                    {t('fields.name')}
-                  </label>
-                  <input
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder={t('placeholders.name')}
-                    className={inputClass}
-                    required
-                  />
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-[var(--color-text-default)] mb-1.5">
-                      {t('fields.email')}
-                    </label>
-                    <input
-                      name="email"
-                      type="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder={t('placeholders.email')}
-                      className={inputClass}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[var(--color-text-default)] mb-1.5">
-                      {t('fields.phone')}
-                    </label>
-                    <input
-                      name="phone"
-                      type="tel"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder={t('placeholders.phone')}
-                      className={inputClass}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="pt-2">
-                  <Button
-                    type="submit"
-                    variant="brand"
-                    size="lg"
-                    className="w-full"
-                    disabled={!isValid || isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                        {t('submit')}
-                      </span>
-                    ) : (
-                      t('submit')
-                    )}
-                  </Button>
-                </div>
-              </form>
-            )}
-          </div>
-
           {/* Contact info */}
           <div className="bg-white rounded-[24px] p-8">
             <div>
@@ -473,7 +393,6 @@ export default function ForGovernancePageClient() {
         <HeroSection />
         <PainPointsSection />
         <DashboardFeaturesSection />
-        <NationalSponsorshipSection />
         <ValuePropsSection />
         <ContactFormSection />
       </main>

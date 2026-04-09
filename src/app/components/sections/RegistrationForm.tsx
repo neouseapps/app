@@ -65,6 +65,7 @@ export function RegistrationForm({ presetSector }: { presetSector?: string }) {
   const [email, setEmail] = useState('')
   const [soDT, setSoDT] = useState('')
   const [licenseFile, setLicenseFile] = useState<File | null>(null)
+  const [submitted, setSubmitted] = useState(false)
 
   const licenseRef = useRef<HTMLInputElement>(null)
   const showChiTiet = linhVuc === otherOption
@@ -92,12 +93,42 @@ export function RegistrationForm({ presetSector }: { presetSector?: string }) {
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault()
+    setSubmitted(true)
   }, [])
 
   return (
     <section id="register" className="pb-24 bg-[var(--color-bg-dim)] scroll-mt-20">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
         <div className="max-w-3xl mx-auto rounded-3xl overflow-hidden bg-[var(--color-bg-default)] shadow-sm border border-[var(--color-border-default)]">
+          <div className="relative">
+            {/* Success overlay — absolutely positioned over the form so it matches the form's height exactly */}
+            {submitted && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-12 text-center overflow-hidden bg-[var(--color-bg-dim)] z-10">
+                {/* Layer 1: sunburst rays (Figma asset) */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/registration-success-bg.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-20"
+                />
+                {/* Layer 2: user-provided confirm image */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/form-confirm-bg.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-100"
+                />
+                <p className="relative font-display italic text-[var(--color-text-default)] text-[28px] leading-[34px] max-w-sm">
+                  {t('success.title')}
+                </p>
+                <p className="relative text-base text-[var(--color-text-dim)] leading-[20px] max-w-xs">
+                  {t('success.body')}
+                </p>
+              </div>
+            )}
+
           <div className="p-7 flex flex-col gap-4 lg:gap-8">
 
             {/* Title */}
@@ -259,6 +290,7 @@ export function RegistrationForm({ presetSector }: { presetSector?: string }) {
               </div>
 
             </form>
+          </div>
           </div>
         </div>
       </div>

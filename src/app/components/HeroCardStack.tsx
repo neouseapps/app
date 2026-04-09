@@ -25,6 +25,7 @@ export function HeroCardStack() {
   const [phase, setPhase] = useState<Phase>('typing')
   const [cursorVisible, setCursorVisible] = useState(true)
   const [paused, setPaused] = useState(false)
+  const [hovered, setHovered] = useState(false)
   const pausedRef = useRef(paused)
   useEffect(() => { pausedRef.current = paused }, [paused])
 
@@ -94,83 +95,124 @@ export function HeroCardStack() {
         animation: btn-spin 3s linear infinite;
         background: conic-gradient(from var(--btn-angle), #c084fc, #818cf8, #60a5fa, #c084fc) !important;
       }
+      @property --card-angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+      }
+      @keyframes card-spin {
+        to { --card-angle: 360deg; }
+      }
+      @keyframes card-shadow-spin {
+        0%   { box-shadow: 0 12px 36px rgba(192,132,252,0.55), 0 0 20px rgba(192,132,252,0.25); }
+        33%  { box-shadow: 0 12px 36px rgba(129,140,248,0.55), 0 0 20px rgba(129,140,248,0.25); }
+        66%  { box-shadow: 0 12px 36px rgba(96,165,250,0.55),  0 0 20px rgba(96,165,250,0.25); }
+        100% { box-shadow: 0 12px 36px rgba(192,132,252,0.55), 0 0 20px rgba(192,132,252,0.25); }
+      }
+      .card-shadow-anim { animation: card-shadow-spin 3s linear infinite; }
+      .card-gradient-layer {
+        position: absolute; inset: 0; border-radius: 24px;
+        animation: card-spin 3s linear infinite;
+        background: conic-gradient(from var(--card-angle), #c084fc, #818cf8, #60a5fa, #c084fc);
+        transition: opacity 0.35s ease;
+      }
     `}</style>
     <Link
       href="/tai-app"
-      className="block w-full max-w-[390px] rounded-[24px] overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2"
+      className="block w-full max-w-[420px] rounded-[24px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2"
       aria-label={t('ariaLabel')}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseEnter={() => { setPaused(true); setHovered(true) }}
+      onMouseLeave={() => { setPaused(false); setHovered(false) }}
     >
-      <div
-        className="flex flex-row items-center h-[140px] gap-1 px-5 border rounded-[24px] overflow-hidden backdrop-blur-md"
-        style={{
-          background: 'rgba(255,255,255,0.3)',
-          borderColor: 'rgba(255,255,255,0.5)',
-          boxShadow: '0px 8px 16px rgba(0,0,0,0.1), 0px 0px 4px rgba(0,0,0,0.06)',
-        }}
-      >
-        {/* ── Typewriter content ── */}
-        <div className="flex flex-1 flex-col justify-center gap-4 py-5 min-w-0 overflow-hidden">
-          <p
-            className="font-default text-white text-left"
-            style={{
-              fontSize: 18,
-              fontWeight: 500,
-              lineHeight: '24px',
-              letterSpacing: '-0.36px',
-              minHeight: 48,
-            }}
-          >
-            {displayText}
-            <span
-              aria-hidden
-              style={{ opacity: cursorVisible ? 1 : 0, marginLeft: 1 }}
-            >
-              |
-            </span>
-          </p>
-
-          {/* White pill CTA with GIF on left — full width, animated gradient border */}
+      {/* Card inner content — shared between mobile and desktop */}
+      {(() => {
+        const cardContent = (
           <div
-            className="rounded-full w-full p-[1.5px] btn-gradient-spin"
-            style={{
-              boxShadow: '0px 2px 8px rgba(0,0,0,0.08)',
-            }}
+            className="flex flex-col gap-3 px-4 py-4 rounded-[22px]"
+            style={{ background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', position: 'relative' }}
           >
-          <div
-            className="flex items-center justify-center gap-2 rounded-full w-full"
-            style={{
-              background: '#ffffff',
-              padding: '6px 14px 6px 6px',
-            }}
-          >
-            <div className="relative size-7 rounded-full overflow-hidden shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/hero-cards/app-download.gif"
-                alt=""
-                aria-hidden
-                className="absolute object-cover w-full h-full"
-                draggable={false}
-              />
+            {/* ── Row 1: GIF + text ── */}
+            <div className="flex flex-row items-center gap-3">
+              <div className="relative size-[56px] rounded-full overflow-hidden shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/hero-cards/app-download.gif"
+                  alt=""
+                  aria-hidden
+                  className="absolute object-cover w-full h-full"
+                  style={{ mixBlendMode: 'multiply' }}
+                  draggable={false}
+                />
+              </div>
+              <p
+                className="font-default text-left flex-1"
+                style={{
+                  color: 'var(--color-text-default)',
+                  fontSize: 15,
+                  fontWeight: 500,
+                  lineHeight: '22px',
+                  letterSpacing: '-0.3px',
+                }}
+              >
+                {displayText}
+                <span aria-hidden style={{ opacity: cursorVisible ? 1 : 0, marginLeft: 1 }}>|</span>
+              </p>
             </div>
-            <span
-              className="font-default overflow-hidden text-ellipsis whitespace-nowrap"
+
+            {/* ── Row 2: full-width button ── */}
+            <div
+              className="flex items-center justify-center rounded-full w-full"
               style={{
-                color: 'var(--color-text-default)',
-                fontSize: 14,
-                fontWeight: 500,
-                lineHeight: '20px',
-                letterSpacing: '-0.14px',
+                background: 'var(--color-bg-inverse)',
+                padding: '10px 16px',
+                boxShadow: '0px 2px 8px rgba(0,0,0,0.12)',
               }}
             >
-              {t(`items.${index}.cta`)}
-            </span>
+              <span
+                className="font-default overflow-hidden text-ellipsis whitespace-nowrap"
+                style={{
+                  color: 'var(--color-text-neutral-inverse, #f7f6f4)',
+                  fontSize: 13,
+                  fontWeight: 500,
+                  lineHeight: '20px',
+                  letterSpacing: '-0.14px',
+                }}
+              >
+                {t(`items.${index}.cta`)}
+              </span>
+            </div>
           </div>
-          </div>
-        </div>
-      </div>
+        )
+        return (
+          <>
+            {/* Mobile: no hover effects */}
+            <div
+              className="md:hidden"
+              style={{
+                borderRadius: 24,
+                boxShadow: '0px 8px 16px rgba(0,0,0,0.1), 0px 0px 4px rgba(0,0,0,0.06)',
+              }}
+            >
+              {cardContent}
+            </div>
+            {/* Desktop: hover effects */}
+            <div
+              className={`hidden md:block ${hovered ? 'card-shadow-anim' : ''}`}
+              style={{
+                position: 'relative',
+                padding: 2,
+                borderRadius: 24,
+                transition: 'transform 0.4s ease-out, box-shadow 0.4s ease-out',
+                transform: hovered ? 'translateY(-4px) scale(1.03)' : 'translateY(0) scale(1)',
+                boxShadow: hovered ? undefined : '0px 8px 16px rgba(0,0,0,0.1), 0px 0px 4px rgba(0,0,0,0.06)',
+              }}
+            >
+              <div className="card-gradient-layer" style={{ opacity: hovered ? 1 : 0 }} />
+              {cardContent}
+            </div>
+          </>
+        )
+      })()}
     </Link>
     </>
   )
